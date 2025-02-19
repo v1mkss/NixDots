@@ -10,3 +10,4 @@ result/
 
 ## Nix ##
 hosts/*/hardware-configuration.nix
+./flake.lock
