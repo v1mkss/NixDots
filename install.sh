@@ -4,6 +4,12 @@
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 PARENT_DIR=$(dirname "$SCRIPT_DIR")
 
+# Check if running on NixOS
+if ! command -v nixos-version >/dev/null 2>&1; then
+    echo "✗ This script requires NixOS. Current system is not NixOS."
+    exit 1
+fi
+
 # Copy hardware configuration
 cp /etc/nixos/hardware-configuration.nix "./hosts/v1mkss/"
 

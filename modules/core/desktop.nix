@@ -8,7 +8,7 @@ let
     wget
     gnupg
     pinentry
-    pinentry-all
+    pinentry-gnome3
   ];
 
   # GNOME packages

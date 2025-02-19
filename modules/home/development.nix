@@ -30,5 +30,8 @@
 
     # Bun
     BUN_INSTALL = "${config.home.homeDirectory}/.bun";
+
+    # JetBrains Toolbox apps path
+    PATH = "${config.home.homeDirectory}/.local/share/JetBrains/Toolbox/scripts:$PATH";
   };
 }
