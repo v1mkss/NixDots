@@ -2,9 +2,11 @@
 {
   home.packages = with pkgs; [
     # Development Tools
-    jetbrains-toolbox  # For IDEs
-    vscode             # For quick edits
+    jetbrains.rust-rover  # Rust IDE
+    jetbrains.idea-ultimate # IntelliJ IDEA Ultimate
+    jetbrains.webstorm   # WebStorm IDE
     zed-editor         # Alternative editor
+    godot_4            # Game development engine
 
     # Runtime and SDK
     bun                # Fast JavaScript runtime/toolkit
@@ -17,6 +19,11 @@
     cmake
     gnumake
     pkg-config
+
+    # GCC and related tools for Rust
+    gcc
+    binutils
+    gdb
   ];
 
   # Environment setup

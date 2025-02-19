@@ -17,7 +17,7 @@
     extraConfig = {
       init.defaultBranch = "master";
       core = {
-        editor = "code --wait";
+        editor = "zeditor --wait";
         autocrlf = "input";
       };
       pull.rebase = true;
