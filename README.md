@@ -14,7 +14,7 @@ This is my personal NixOS configuration using Flakes and Home Manager.
   - Rust
   - Bun
 - **Applications**:
-  - Firefox
+  - Floorp(Firefox)
   - Telegram
   - Discord (with OpenASAR and Vencord)
   - LibreOffice
