@@ -1,95 +1,77 @@
-# NixOS Configuration
+# 🚀 NixOS Config
 
-This is my personal NixOS configuration using Flakes and Home Manager.
+My minimal NixOS setup with Flakes and Home Manager for efficient development.
 
-## Features
+## ⚙️ Core Features
 
-- **Desktop Environment**: GNOME (can be switched to KDE in `modules/core/desktop.nix`)
-- **Shell**: Fish with custom prompt and utilities
-- **Development Tools**:
-  - JetBrains Toolbox
-  - VSCode
-  - Zed Editor
-  - Multiple Java versions (8, 11, 17, 21)
-  - Rust
-  - Bun
-- **Applications**:
-  - Floorp(Firefox)
-  - Telegram
-  - Discord (with OpenASAR and Vencord)
-  - LibreOffice
-  - MPV
-  - OBS Studio
-  - Spotify
+### 🖥️ System
+- GNOME/KDE desktop environments
+- AMD GPU optimization
+- PipeWire audio
+- Cascadia Code fonts
 
-## Structure
+### 🛠️ Development
+- JetBrains Suite (IDEA, WebStorm, Rust-Rover)
+- Zed Editor
+- Java (8,11,17,21)
+- Rust toolchain
+- Bun runtime
+- Build tools (CMake, GCC, etc)
 
-```
-.
-├── flake.nix           # Main flake configuration
-├── hosts/
-│   └── v1mkss/        # Host-specific configurations
-├── modules/
-│   ├── core/          # System-wide configurations
-│   │   ├── desktop.nix
-│   │   ├── fonts.nix
-│   │   ├── hardware.nix
-│   │   ├── language.nix
-│   │   ├── network.nix
-│   │   ├── services.nix
-│   │   └── users.nix
-│   └── home/          # User-specific configurations
-│       ├── development.nix
-│       ├── fish.nix
-│       ├── git.nix
-│       └── packages.nix
-└── install.sh         # Installation script
-```
+### 📱 Apps
+- Floorp browser
+- Discord (OpenASAR/Vencord)
+- Telegram
+- OBS Studio
+- MPV
+- Spotify
+- LibreOffice
+- And many more applications and tools available in the Nix ecosystem!
 
-## Installation
+### 🐟 Shell
+- Fish with modern prompt
+- Git integration
+- Productivity aliases
+- Modern CLI tools
 
-1. Clone this repository:
+## 🏃 Quick Start
+
 ```bash
-git clone https://github.com/yourusername/nixos-config.git
+git clone https://github.com/v1mkss/nixos-config
 cd nixos-config
-```
-
-2. Run the installation script:
-```bash
 sh ./install.sh
 ```
 
-The script will:
-- Copy your hardware configuration
-- Build and switch to the new configuration
-- Optionally reboot the system
+## 📁 Structure
 
-## Usage
+```
+.
+├── flake.nix          # Main config
+├── hosts/v1mkss/      # Host config
+├── modules/           # Core modules
+└── install.sh         # Setup script
+```
 
-### System Management
+## ⚡ Customization
 
-- Cleanup old generations: `cleanup` (alias for `sudo nix-collect-garbage -d`)
+Key files:
+- System: `modules/core/desktop.nix`
+- User: `modules/home/development.nix`
+- Shell: `modules/home/fish.nix`
 
-### Development
+## 🔧 Commands
 
-- Switch Java versions: `use-java [8|11|17|21]`
-- Create and enter directory: `mkcd directory-name`
+System:
+- `cleanup` - Clear old generations
 
-### Modern CLI Tools
+Dev:
+- `use-java [8|11|17|21]` - Switch Java versions
+- `mkcd <dir>` - Create and enter directory
 
-The configuration includes modern replacements for common Unix tools:
-- `ls` → `eza`
-- `cat` → `bat`
-- `find` → `fd`
-- Plus `fzf` for fuzzy finding
+CLI:
+- `ls/l/la` - Enhanced listing (eza)
+- `cat` - Enhanced viewer (bat)
+- `fd/fzf` - Smart find
 
-## Customization
-
-- Desktop Environment: Edit `desktopEnvironment` in `modules/core/desktop.nix`
-- Packages: Modify `modules/home/packages.nix`
-- Git configuration: Update `modules/home/git.nix`
-- Fish shell: Customize `modules/home/fish.nix`
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📄 License
+This configuration and all related code is provided under the [MIT License](./LICENSE), granting you full permission to use, modify, and share this work freely.
