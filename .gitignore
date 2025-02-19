@@ -1,0 +1,12 @@
+## Code Editors ##
+.*.iml
+.idea/*
+!.idea/.name
+
+.vscode/
+
+## Build files ##
+result/
+
+## Nix ##
+hosts/*/hardware-configuration.nix

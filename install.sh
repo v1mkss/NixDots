@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Get current script directory
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PARENT_DIR=$(dirname "$SCRIPT_DIR")
+
+# Copy hardware configuration
+cp /etc/nixos/hardware-configuration.nix "./hosts/v1mkss/"
+
+# Ensure we're in the directory with flake.nix
+cd "$SCRIPT_DIR"
+
+# Build and switch to new configuration
+if sudo nixos-rebuild switch --flake .#$(hostname); then
+    echo "✓ Hardware configuration copied and system rebuilt successfully!"
+
+    read -p "Do you want to reboot now? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        sudo reboot
+    fi
+else
+    echo "✗ Failed to rebuild system. Please check the error messages above."
+    exit 1
+fi
