@@ -7,6 +7,7 @@
     jetbrains.webstorm   # WebStorm IDE
     zed-editor         # Alternative editor
     godot_4            # Game development engine
+    lazygit           # Terminal UI for git
 
     # Runtime and SDK
     bun                # Fast JavaScript runtime/toolkit

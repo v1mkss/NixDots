@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  desktopEnvironment = "gnome"; # "gnome" or "kde"
+  desktopEnvironment = "kde"; # "gnome" or "kde"
 
   # Common packages
   commonPackages = with pkgs; [
@@ -9,6 +9,8 @@ let
     gnupg
     pinentry
     pinentry-gnome3
+    zip
+    unzip
   ];
 
   # GNOME packages
@@ -20,8 +22,8 @@ let
   # KDE packages
   kdePackages = with pkgs; [
     ghostty
-    # libsForQt5.yakuake
-    # libsForQt5.qtstyleplugin-kvantum
+    pkgs.kdePackages.sddm-kcm
+    pkgs.kdePackages.powerdevil
   ];
 
   # Packages to exclude
@@ -53,8 +55,6 @@ let
     kate
     khelpcenter
     konsole
-    kwallet
-    kwalletmanager
   ]);
 in
 {
@@ -103,14 +103,16 @@ in
       # GNOME Power Management
       services.power-profiles-daemon.enable = true;
       services.tlp.enable = false;
+      services.upower.enable = false;
     })
 
     (lib.mkIf (desktopEnvironment == "kde") {
       environment.plasma6.excludePackages = kdeExcludePackages;
 
       # KDE Power Management
-      services.power-profiles-daemon.enable = true;
+      services.power-profiles-daemon.enable = false;
       services.tlp.enable = false;
+      services.upower.enable = true;
     })
   ];
 }
