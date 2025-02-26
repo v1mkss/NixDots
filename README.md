@@ -30,7 +30,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development.
 - **Media**:
   - OBS Studio
   - MPV Player
-  - Spotube
+  - Spotify
 - **Office**: LibreOffice Qt6
 
 ### 🐟 Shell Environment
