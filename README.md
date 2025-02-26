@@ -1,6 +1,6 @@
 # 🚀 NixOS Config
 
-My minimal NixOS setup with Flakes and Home Manager for efficient development.
+My minimal NixOS setup with Flakes and Home Manager for efficient development and everyday use.
 
 ## ⚙️ Core Features
 
@@ -32,6 +32,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development.
   - MPV Player
   - Spotify
 - **Office**: LibreOffice Qt6
+- **Productivity**: Anytype
 
 ### 🐟 Shell Environment
 - **Fish Shell**:
@@ -49,15 +50,10 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/v1mkss/nixos-config
+git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
 ```
 
-2. Navigate to the directory:
-```bash
-cd nixos-config
-```
-
-3. Run the installation script:
+2. Run the installation script:
 ```bash
 sh ./install.sh
 ```
@@ -101,7 +97,6 @@ sh ./install.sh
 ### System Management
 ```bash
 cleanup                 # Clean old system generations
-sudo nixos-rebuild switch --flake .#  # Rebuild system
 ```
 
 ### Development
@@ -112,7 +107,7 @@ mkcd <directory>       # Create and enter directory
 
 ### Enhanced CLI Commands
 ```bash
-ls, l, la             # Enhanced file listing (eza)
+ls, l, la            # Enhanced file listing (eza)
 cat <file>           # Enhanced file viewer (bat)
 tree                 # Directory tree view
 ```

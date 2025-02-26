@@ -7,6 +7,9 @@
 
   # Hardware configuration
   hardware = {
+    cpu.amd.updateMicrocode = true;
+    amdgpu.opencl.enable = true;
+    
     bluetooth.enable = true;
     graphics = {
       enable = true;
@@ -14,8 +17,6 @@
       extraPackages = with pkgs; [
         mesa
         vulkan-tools
-        rocmPackages.clr.icd
-        rocmPackages.clr
         rocmPackages.rocminfo
         rocmPackages.rocm-runtime
       ];

@@ -7,8 +7,7 @@ let
     git
     wget
     gnupg
-    pinentry
-    pinentry-gnome3
+    pinentry-qt
     zip
     unzip
   ];

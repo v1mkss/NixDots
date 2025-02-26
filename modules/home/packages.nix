@@ -19,6 +19,7 @@
       withOpenASAR = true;
       withVencord = true;
     })
+    anytype
 
     # Office
     libreoffice-qt6-fresh
