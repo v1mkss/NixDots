@@ -48,14 +48,17 @@ let
     seahorse
     totem
     yelp
-  ]; #++ (with pkgs.gnome; []);
+  ]; # ++ (with pkgs.gnome; []);
 
-  kdeExcludePackages = with pkgs; [] ++ (with pkgs.kdePackages; [
-    elisa
-    kate
-    khelpcenter
-    konsole
-  ]);
+  kdeExcludePackages =
+    with pkgs;
+    [ ]
+    ++ (with pkgs.kdePackages; [
+      elisa
+      kate
+      khelpcenter
+      konsole
+    ]);
 in
 {
   config = lib.mkMerge [
@@ -88,12 +91,16 @@ in
       };
 
       # Installing packages depending on DE
-      environment.systemPackages = commonPackages ++
-        (if desktopEnvironment == "gnome"
-         then gnomePackages
-         else if desktopEnvironment == "kde"
-         then kdePackages
-         else []);
+      environment.systemPackages =
+        commonPackages
+        ++ (
+          if desktopEnvironment == "gnome" then
+            gnomePackages
+          else if desktopEnvironment == "kde" then
+            kdePackages
+          else
+            [ ]
+        );
     }
 
     (lib.mkIf (desktopEnvironment == "gnome") {

@@ -13,7 +13,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development.
 ### 🛠️ Development Environment
 - **IDEs & Editors**:
   - JetBrains Suite (IDEA Ultimate, WebStorm, Rust-Rover)
-  - Zed Editor
+  - VSCodium
   - Godot 4
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
@@ -23,14 +23,14 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development.
 - **Version Control**: Git with LazyGit
 
 ### 📱 Applications
-- **Browsers**: Floorp
+- **Browsers**: Brave
 - **Communication**:
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
   - OBS Studio
   - MPV Player
-  - Spotify
+  - Spotube
 - **Office**: LibreOffice Qt6
 
 ### 🐟 Shell Environment

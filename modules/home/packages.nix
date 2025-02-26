@@ -13,7 +13,7 @@
     spotify
 
     # Internet
-    floorp
+    brave
     telegram-desktop
     (discord.override {
       withOpenASAR = true;
