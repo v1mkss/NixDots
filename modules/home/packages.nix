@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./fish.nix
@@ -11,6 +14,7 @@
     mpv
     obs-studio
     spotify
+    yt-dlp
 
     # Internet
     brave
@@ -19,7 +23,6 @@
       withOpenASAR = true;
       withVencord = true;
     })
-    anytype
 
     # Office
     libreoffice-qt6-fresh

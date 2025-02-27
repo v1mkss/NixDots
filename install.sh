@@ -17,7 +17,8 @@ cp /etc/nixos/hardware-configuration.nix "./hosts/v1mkss/"
 cd "$SCRIPT_DIR"
 
 # Build and switch to new configuration
-if sudo nixos-rebuild switch --flake .#v1mkss; then
+current_user=$(whoami)
+if sudo nixos-rebuild switch --flake .#"$current_user"; then
     echo "✓ Hardware configuration copied and system rebuilt successfully!"
 
     read -p "Do you want to reboot now? (y/n) " -n 1 -r

@@ -114,9 +114,9 @@ in
 
   # Install required utilities
   home.packages = with pkgs; [
-    eza   # Modern replacement for ls
-    bat   # Modern replacement for cat
-    fd    # Modern replacement for find
-    fzf   # Fuzzy finder
+    eza # Modern replacement for ls
+    bat # Modern replacement for cat
+    fd # Modern replacement for find
+    fzf # Fuzzy finder
   ];
 }

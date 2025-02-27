@@ -31,6 +31,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
   - OBS Studio
   - MPV Player
   - Spotify
+  - yt-dlp
 - **Office**: LibreOffice Qt6
 - **Productivity**: Anytype
 
