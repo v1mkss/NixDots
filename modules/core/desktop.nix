@@ -8,6 +8,8 @@ let
     wget
     gnupg
     pinentry-qt
+    rar
+    unrar
     zip
     unzip
   ];
