@@ -2,12 +2,11 @@
 {
   home.packages = with pkgs; [
     # Development Tools
-    jetbrains.rust-rover    # Rust IDE
     jetbrains.idea-ultimate # IntelliJ IDEA Ultimate
-    jetbrains.webstorm      # WebStorm IDE
-    vscodium                # Alternative editor
+    vscode                  # Alternative editor
     godot_4                 # Game development engine
     lazygit                 # Terminal UI for git
+    blender                 # 3D creation suite
 
     # Runtime and SDK
     bun                # Fast JavaScript runtime/toolkit
