@@ -33,7 +33,6 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
   - Spotify
   - yt-dlp
 - **Office**: LibreOffice Qt6
-- **Productivity**: Anytype
 
 ### 🐟 Shell Environment
 - **Fish Shell**:
