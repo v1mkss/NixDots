@@ -5,16 +5,19 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 ## ⚙️ Core Features
 
 ### 🖥️ System
+
 - **Desktop Environment**: Choice between GNOME or KDE Plasma 6
 - **Hardware Support**: Optimized for AMD GPU with ROCm support
 - **Audio**: PipeWire audio system
 - **Fonts**: Cascadia Code as default font family
 
 ### 🛠️ Development Environment
+
 - **IDEs & Editors**:
-  - JetBrains Suite (IDEA Ultimate, WebStorm, Rust-Rover)
-  - VSCodium
+  - JetBrains IDEA Ultimate
+  - VSCode
   - Godot 4
+  - Blender
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
   - Rust toolchain with cargo
@@ -23,6 +26,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 - **Version Control**: Git with LazyGit
 
 ### 📱 Applications
+
 - **Browsers**: Brave
 - **Communication**:
   - Discord (with OpenASAR/Vencord)
@@ -35,6 +39,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 - **Office**: LibreOffice Qt6
 
 ### 🐟 Shell Environment
+
 - **Fish Shell**:
   - Modern prompt with git integration
   - Smart aliases
@@ -49,11 +54,13 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 ## 🚀 Installation
 
 1. Clone the repository:
+
 ```bash
 git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
 ```
 
 2. Run the installation script:
+
 ```bash
 sh ./install.sh
 ```
@@ -83,11 +90,13 @@ sh ./install.sh
 ## ⚡ Customization Guide
 
 ### System Configuration
+
 - Desktop Environment: Edit `modules/core/desktop.nix`
 - Hardware Settings: Modify `modules/core/hardware.nix`
 - User Settings: Update `modules/core/users.nix`
 
 ### User Configuration
+
 - Development Tools: Edit `modules/home/development.nix`
 - Shell Settings: Modify `modules/home/fish.nix`
 - Additional Packages: Update `modules/home/packages.nix`
@@ -95,17 +104,20 @@ sh ./install.sh
 ## 🔧 Useful Commands
 
 ### System Management
+
 ```bash
 cleanup                 # Clean old system generations
 ```
 
 ### Development
+
 ```bash
 use-java [8|11|17|21]  # Switch Java versions
 mkcd <directory>       # Create and enter directory
 ```
 
 ### Enhanced CLI Commands
+
 ```bash
 ls, l, la            # Enhanced file listing (eza)
 cat <file>           # Enhanced file viewer (bat)
