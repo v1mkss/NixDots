@@ -17,6 +17,11 @@
     pinentryPackage = pkgs.pinentry-qt;
   };
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # System Version
   system.stateVersion = "24.11";
 }

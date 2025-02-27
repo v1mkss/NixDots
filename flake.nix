@@ -9,7 +9,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -22,6 +28,7 @@
       defaultUser = "v1mkss";
     in
     {
+
       nixosConfigurations = {
         v1mkss = nixpkgs.lib.nixosSystem {
           inherit system;
