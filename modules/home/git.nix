@@ -17,7 +17,7 @@
     extraConfig = {
       init.defaultBranch = "master";
       core = {
-        editor = "codium --wait";
+        editor = "code --wait";
         autocrlf = "input";
       };
       pull.rebase = true;
