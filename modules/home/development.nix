@@ -3,17 +3,17 @@
   home.packages = with pkgs; [
     # Development Tools
     jetbrains.idea-ultimate # IntelliJ IDEA Ultimate
-    vscode                  # Alternative editor
-    godot_4                 # Game development engine
-    lazygit                 # Terminal UI for git
-    blender                 # 3D creation suite
+    vscode # Alternative editor
+    godot_4 # Game development engine
+    lazygit # Terminal UI for git
+    blender # 3D creation suite
 
     # Runtime and SDK
-    bun                # Fast JavaScript runtime/toolkit
-    rustup             # Rust toolchain manager
+    bun # Fast JavaScript runtime/toolkit
+    rustup # Rust toolchain manager
 
     # Java Development Kit (only default version)
-    jdk21              # Default Java version
+    jdk21 # Default Java version
 
     # Build tools
     cmake
