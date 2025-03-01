@@ -69,7 +69,7 @@ sh ./install.sh
 
 ```
 .
-├── flake.nix                # Main configuration entry point
+├── flake.nix               # Main configuration entry point
 ├── hosts/
 │   └── v1mkss/             # Host-specific configurations
 │       ├── configuration.nix
@@ -82,7 +82,7 @@ sh ./install.sh
 │   │   └── ...
 │   └── home/               # User-level configurations
 │       ├── development.nix # Development tools
-│       ├── fish.nix       # Shell configuration
+│       ├── fish.nix        # Shell configuration
 │       └── packages.nix    # User packages
 └── install.sh              # Installation script
 ```

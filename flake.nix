@@ -65,6 +65,7 @@
                 # Pass the list of users to home.nix
                 users = getUsers;
               };
+
               users =
                 let
                   homeDirUsers = getUsers;
