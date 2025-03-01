@@ -7,7 +7,7 @@ let
     git
     wget
     gnupg
-    pinentry-qt
+    pinentry-gtk2
     rar
     unrar
     zip

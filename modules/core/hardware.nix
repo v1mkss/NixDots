@@ -3,13 +3,13 @@
   # Kernel and boot configuration
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ ];
 
   # Hardware configuration
   hardware = {
     cpu.amd.updateMicrocode = true;
     amdgpu.opencl.enable = true;
-    
+
     bluetooth.enable = true;
     graphics = {
       enable = true;

@@ -17,7 +17,12 @@
     yt-dlp
 
     # Internet
-    brave
+    (vivaldi.overrideAttrs (oldAttrs: {
+      dontWrapQtApps = false;
+      dontPatchELF = true;
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+    }))
+
     telegram-desktop
     (discord.override {
       withOpenASAR = true;

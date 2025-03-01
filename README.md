@@ -27,7 +27,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 
 ### 📱 Applications
 
-- **Browsers**: Brave
+- **Browsers**: Vivaldi
 - **Communication**:
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop

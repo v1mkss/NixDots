@@ -9,7 +9,7 @@
 
     # Enable GPG signing
     signing = {
-        key = "F12B0862ABE7056D"; #REPLACE_ME
+        key = "3BB27605CDF00C32"; #REPLACE_ME
         signByDefault = true;
     };
 
