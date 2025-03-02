@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     # Media
+    easyeffects
     mpv
     obs-studio
     spotify

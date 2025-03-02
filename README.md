@@ -32,8 +32,9 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
-  - OBS Studio
+  - EasyEffects
   - MPV Player
+  - OBS Studio
   - Spotify
   - yt-dlp
 - **Office**: LibreOffice Qt6
