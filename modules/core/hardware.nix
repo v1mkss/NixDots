@@ -27,11 +27,6 @@
         vulkan-loader
         amdvlk
       ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [
-        libGL
-        vulkan-loader
-        amdvlk
-      ];
     };
 
     bluetooth.enable = true;

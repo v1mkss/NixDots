@@ -14,7 +14,6 @@
     wine64
   ];
   
-  # Optional: Additional configuration for Steam
   home.sessionVariables = {
     # Disable Steam's update notifications
     STEAM_DISABLE_UPDATES = "1";
