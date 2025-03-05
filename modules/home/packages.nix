@@ -7,6 +7,7 @@
     ./fish.nix
     ./development.nix
     ./git.nix
+    ./steam.nix
   ];
 
   home.packages = with pkgs; [

@@ -14,12 +14,12 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 ### 🛠️ Development Environment
 
 - **IDEs & Editors**:
-  - JetBrains IDEA Ultimate
   - VSCode
-  - Godot 4
+  - Godot 4.3 Mono (C# Support)
   - Blender
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
+  - .NET SDK 8
   - Rust toolchain with cargo
   - Bun JavaScript runtime
 - **Build Tools**: CMake, GCC, Make, pkg-config
@@ -38,6 +38,11 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
   - Spotify
   - yt-dlp
 - **Office**: LibreOffice Qt6
+- **Gaming**:
+  - Steam
+  - Proton Compatibility Layer
+  - Protontricks
+  - Wine Staging
 
 ### 🐟 Shell Environment
 
@@ -84,7 +89,8 @@ sh ./install.sh
 │   └── home/               # User-level configurations
 │       ├── development.nix # Development tools
 │       ├── fish.nix        # Shell configuration
-│       └── packages.nix    # User packages
+│       ├── packages.nix    # User packages
+│       └── steam.nix       # User-specific Steam settings
 └── install.sh              # Installation script
 ```
 

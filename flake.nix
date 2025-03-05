@@ -51,6 +51,10 @@
           home-manager.nixosModules.home-manager
           {
             nixpkgs.config.allowUnfree = true;
+            nixpkgs.config.permittedInsecurePackages = [
+              "dotnet-sdk-6.0.428"
+            ];
+
             nix.settings.experimental-features = [
               "nix-command"
               "flakes"

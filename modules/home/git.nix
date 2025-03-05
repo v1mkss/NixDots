@@ -9,8 +9,8 @@
 
     # Enable GPG signing
     signing = {
-        key = "3BB27605CDF00C32"; #REPLACE_ME
-        signByDefault = true;
+      key = "F46760784F31A90E"; # REPLACE_ME
+      signByDefault = true;
     };
 
     # Default settings
