@@ -2,8 +2,8 @@
 {
   # Kernel and boot configuration
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "" ];
+  boot.initrd.kernelModules = [ "" ];
+  boot.kernelModules = [ "amdgpu" ];
 
   # Hardware configuration
   hardware = {
@@ -25,7 +25,6 @@
         # Additional OpenGL and Vulkan support
         libGL
         vulkan-loader
-        amdvlk
       ];
     };
 

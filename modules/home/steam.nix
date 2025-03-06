@@ -5,7 +5,6 @@
     # Steam core
     steam
     steam-run
-    steamcmd
 
     # Wine and compatibility tools
     protontricks
