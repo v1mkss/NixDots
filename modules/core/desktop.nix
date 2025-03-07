@@ -7,7 +7,6 @@ let
     git
     wget
     gnupg
-    pinentry-gtk2
     rar
     unrar
     zip
