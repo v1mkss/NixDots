@@ -4,7 +4,7 @@
     enable = true;
 
     # Basic configuration
-    userName = "v1mkss";
+    userName = "Volodia Kraplich";
     userEmail = "v1mkss.m+git@gmail.com";
 
     # Enable GPG signing

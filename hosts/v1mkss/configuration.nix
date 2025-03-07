@@ -14,9 +14,8 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-gtk2;
   };
 
   # System Version
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

@@ -3,7 +3,7 @@
   # Kernel and boot configuration
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "" ];
+  boot.kernelModules = [ "amdgpu" ];
 
   # Hardware configuration
   hardware = {
@@ -14,26 +14,29 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        # Enhanced graphics stack
         mesa
-        vulkan-tools
-
-        # Specific AMD support
-        rocmPackages.rocminfo
-        rocmPackages.rocm-runtime
-
-        # Additional OpenGL and Vulkan support
-        libGL
+        mesa.opencl
         vulkan-loader
-        amdvlk
+        vulkan-validation-layers
+
+        libva
+        libvdpau-va-gl
       ];
     };
 
     bluetooth.enable = true;
   };
 
-  # Some programs hard-code the path to HIP:
-  systemd.tmpfiles.rules = [
-    "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
+  environment.systemPackages = with pkgs; [
+    rocmPackages.rocminfo
+    vulkan-tools
+    clinfo
+    glxinfo
   ];
+
+  environment.variables = {
+    ROC_ENABLE_PRE_VEGA = "1";
+    RUSTICL_ENABLE = "radeonsi";
+  };
+
 }
