@@ -44,6 +44,7 @@ let
 
   # --- Packages to exclude from KDE ---
   kdeExcludePackages = with pkgs; [] ++ (with pkgs.kdePackages; [
+    baloo
     elisa
     kate
     khelpcenter
