@@ -1,18 +1,28 @@
 { ... }:
 {
-  config = {
-    # Basic services
-    services.printing.enable = true;
-    services.fstrim.enable = true;
-    services.pcscd.enable = true;
+  # General system services
+  services = {
+    # Printing
+    printing.enable = true;
 
-    # PipeWire
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
+    # Periodic SSD trim
+    fstrim.enable = true;
+
+    # Smart card service
+    pcscd.enable = true;
+
+    # Journald limit settings
+    journald.extraConfig = "SystemMaxUse=50M";
   };
+
+  # Allow deletion of old Nix generations
+  nix.gc = {
+    automatic = true; # Automatically run GC
+    dates = "weekly"; # How often
+    options = "--delete-older-than 7d"; # Delete generations older than 7 days
+  };
+
+  # Nix settings
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.auto-optimise-store = true; # Automatically optimize Nix store
 }

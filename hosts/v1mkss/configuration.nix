@@ -1,14 +1,9 @@
-{ pkgs, ... }:
-
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
   ];
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Settings GnuPG
   programs.gnupg.agent = {

@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -19,12 +20,7 @@
     yt-dlp
 
     # Internet
-    (vivaldi.overrideAttrs (oldAttrs: {
-      dontWrapQtApps = false;
-      dontPatchELF = true;
-      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
-    }))
-
+    inputs.zen-browser.packages."${system}".default
     telegram-desktop
     (discord.override {
       withOpenASAR = true;
@@ -33,10 +29,5 @@
 
     # Office
     libreoffice-qt6-fresh
-
-    # Additional tools
-    nil
-    nixd
-    nixfmt-rfc-style
   ];
 }

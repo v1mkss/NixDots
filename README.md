@@ -7,19 +7,18 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 ### 🖥️ System
 
 - **Desktop Environment**: Choice between GNOME or KDE Plasma 6
-- **Hardware Support**: Optimized for AMD GPU with ROCm support
+- **Hardware Support**: Optimized for AMD CPU/GPU
 - **Audio**: PipeWire audio system
 - **Fonts**: Cascadia Code as default font family
 
 ### 🛠️ Development Environment
 
 - **IDEs & Editors**:
-  - VSCode
-  - Godot 4.3 Mono (C# Support)
+  - Zed Editor
+  - Godot 4.4
   - Blender
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
-  - .NET SDK 8
   - Rust toolchain with cargo
   - Bun JavaScript runtime
 - **Build Tools**: CMake, GCC, Make, pkg-config
@@ -27,7 +26,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 
 ### 📱 Applications
 
-- **Browsers**: Vivaldi
+- **Browsers**: Zen Browser
 - **Communication**:
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
@@ -78,20 +77,27 @@ sh ./install.sh
 ├── flake.nix               # Main configuration entry point
 ├── hosts/
 │   └── v1mkss/             # Host-specific configurations
-│       ├── configuration.nix
-│       └── home.nix
+│       ├── configuration.nix # System configuration for the host
+│       └── home.nix        # Home Manager entry point for the host
 ├── modules/
-│   ├── core/               # System-level configurations
-│   │   ├── desktop.nix     # DE configuration
-│   │   ├── hardware.nix    # Hardware settings
-│   │   ├── network.nix     # Network configuration
-│   │   └── ...
-│   └── home/               # User-level configurations
-│       ├── development.nix # Development tools
-│       ├── fish.nix        # Shell configuration
-│       ├── packages.nix    # User packages
-│       └── steam.nix       # User-specific Steam settings
-└── install.sh              # Installation script
+│   ├── core/               # System-level configurations (NixOS modules)
+│   │   ├── desktop.nix     # Desktop Environment (GNOME/KDE)
+│   │   ├── hardware.nix    # Hardware settings (CPU, GPU, drivers)
+│   │   ├── network.nix     # Network configuration (hostname, NetworkManager)
+│   │   ├── packages.nix    # Base system packages
+│   │   ├── users.nix       # User account definitions
+│   │   ├── sysctl.nix      # Kernel parameter configuration loader
+│   │   ├── sysctl.d/       # Kernel parameter files
+│   │   ├── modprobe.d/     # Kernel module option files
+│   │   └── ...             # Other core modules (audio, boot, fonts, etc.)
+│   └── home/               # User-level configurations (Home Manager modules)
+│       ├── development.nix # Development tools and environment setup
+│       ├── fish.nix        # Fish shell configuration, aliases, functions
+│       ├── git.nix         # Git configuration
+│       ├── packages.nix    # User-specific application packages
+│       ├── steam.nix       # Steam and gaming related settings
+│       └── ...             # Other user modules
+├── install.sh              # Installation script
 ```
 
 ## ⚡ Customization Guide
@@ -99,7 +105,8 @@ sh ./install.sh
 ### System Configuration
 
 - Desktop Environment: Edit `modules/core/desktop.nix`
-- Hardware Settings: Modify `modules/core/hardware.nix`
+- Hardware Settings: Modify `modules/core/hardware.nix` and `modules/core/modprobe.d/`
+- Kernel Parameters: Modify files in `modules/core/sysctl.d/`
 - User Settings: Update `modules/core/users.nix`
 
 ### User Configuration
@@ -107,6 +114,7 @@ sh ./install.sh
 - Development Tools: Edit `modules/home/development.nix`
 - Shell Settings: Modify `modules/home/fish.nix`
 - Additional Packages: Update `modules/home/packages.nix`
+- Git Settings: Edit `modules/home/git.nix`
 
 ## 🔧 Useful Commands
 
@@ -114,6 +122,7 @@ sh ./install.sh
 
 ```bash
 cleanup                 # Clean old system generations
+optimize                # Optimize Nix store (may take time)
 ```
 
 ### Development
@@ -128,7 +137,7 @@ mkcd <directory>       # Create and enter directory
 ```bash
 ls, l, la            # Enhanced file listing (eza)
 cat <file>           # Enhanced file viewer (bat)
-tree                 # Directory tree view
+tree                 # Directory tree view (eza)
 ```
 
 ## 🤝 Contributing
