@@ -96,9 +96,9 @@ in
       environment.plasma6.excludePackages = kdeExcludePackages;
 
       # Power management for KDE (uses upower)
-      services.upower.enable = true;
+      # services.upower.enable = true;
       # Disable alternatives
-      services.power-profiles-daemon.enable = false;
+      services.power-profiles-daemon.enable = true;
       # services.tlp.enable = false;
     })
   ];

@@ -9,8 +9,6 @@
     kernelParams = ["zswap.enabled=1"];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "amdgpu" ];
-
-    # extraModprobeConfig = builtins.readFile ./modprobe.d/amdgpu.conf;
   };
 
   #Swap
