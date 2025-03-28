@@ -1,32 +1,24 @@
 { lib, pkgs, ... }:
 let
-  desktopEnvironment = "kde"; # "gnome" or "kde"
+  # --- Variable for selecting the DE ---
+  desktopEnvironment = "kde"; # Options: "gnome" or "kde"
 
-  # Common packages
-  commonPackages = with pkgs; [
-    git
-    wget
-    gnupg
-    rar
-    unrar
-    zip
-    unzip
-  ];
-
-  # GNOME packages
+  # --- GNOME specific packages ---
   gnomePackages = with pkgs; [
-    gnome-tweaks
-    gnome-extension-manager
+    gnome-tweaks # GNOME tweaking tool
+    gnome-extension-manager # Extension manager
   ];
 
-  # KDE packages
+  # --- KDE specific packages ---
   kdePackages = with pkgs; [
-    ghostty
-    pkgs.kdePackages.sddm-kcm
-    pkgs.kdePackages.powerdevil
+    ghostty # New GPU-accelerated terminal
+
+    # KDE Integration and Utilities
+    pkgs.kdePackages.sddm-kcm # SDDM configuration module in System Settings
+    pkgs.kdePackages.powerdevil # KDE power management
   ];
 
-  # Packages to exclude
+  # --- Packages to exclude from GNOME ---
   gnomeExcludePackages = with pkgs; [
     atomix
     epiphany
@@ -48,78 +40,66 @@ let
     seahorse
     totem
     yelp
-  ]; # ++ (with pkgs.gnome; []);
+  ];# ++ (with pkgs.gnome; []);
 
-  kdeExcludePackages =
-    with pkgs;
-    [ ]
-    ++ (with pkgs.kdePackages; [
-      elisa
-      kate
-      khelpcenter
-      konsole
-    ]);
+  # --- Packages to exclude from KDE ---
+  kdeExcludePackages = with pkgs; [] ++ (with pkgs.kdePackages; [
+    elisa
+    kate
+    khelpcenter
+    konsole
+  ]);
+
 in
 {
   config = lib.mkMerge [
+    # --- Basic X-server/Wayland settings ---
     {
-      # Display manager and desktop environment settings
-      services = {
-        xserver = {
-          enable = true;
-          excludePackages = with pkgs; [ xterm ];
+      # Base Xorg server still needed even for Wayland compositors sometimes
+      services.xserver.enable = true;
+      # Exclude basic xterm if not needed
+      services.xserver.excludePackages = with pkgs; [ xterm ];
 
-          displayManager.gdm = {
-            enable = desktopEnvironment == "gnome";
-            wayland = true;
-          };
-
-          desktopManager.gnome = {
-            enable = desktopEnvironment == "gnome";
-          };
-        };
-
-        displayManager.sddm = {
-          enable = desktopEnvironment == "kde";
-          wayland.enable = true;
-        };
-
-        desktopManager.plasma6 = {
-          enable = desktopEnvironment == "kde";
-        };
-
-      };
-
-      # Installing packages depending on DE
-      environment.systemPackages =
-        commonPackages
-        ++ (
-          if desktopEnvironment == "gnome" then
-            gnomePackages
-          else if desktopEnvironment == "kde" then
-            kdePackages
-          else
-            [ ]
-        );
+      # Enable Graphics drivers
+      hardware.graphics.enable = true;
     }
 
+    # --- Configuration for GNOME ---
     (lib.mkIf (desktopEnvironment == "gnome") {
+      # GNOME still uses services.xserver for its GDM/Desktop settings
+      services.xserver = {
+        displayManager.gdm.enable = true;
+        displayManager.gdm.wayland = true; # Wayland is enabled by default
+        desktopManager.gnome.enable = true;
+      };
+      environment.systemPackages = gnomePackages;
       environment.gnome.excludePackages = gnomeExcludePackages;
-      services.gnome.core-utilities.enable = true;
+      # services.gnome.core-utilities.enable = true; # Enables basic utilities, might be useful
 
-      # GNOME Power Management
+      # Power management for GNOME
       services.power-profiles-daemon.enable = true;
-      services.tlp.enable = false;
-      services.upower.enable = false;
+      # Disable alternatives to avoid conflicts
+      # services.tlp.enable = false;
+      # services.upower.enable = false; # power-profiles-daemon provides a similar service
     })
 
+    # --- Configuration for KDE Plasma ---
     (lib.mkIf (desktopEnvironment == "kde") {
+      # KDE options moved out of services.xserver
+      services.displayManager.sddm = {
+         enable = true;
+         wayland.enable = true; # Enable Wayland session for SDDM
+      };
+      services.desktopManager.plasma6.enable = true;
+
+      environment.systemPackages = kdePackages;
       environment.plasma6.excludePackages = kdeExcludePackages;
 
-      # KDE Power Management
-      services.power-profiles-daemon.enable = false;
-      services.tlp.enable = false;
+      # Power management for KDE (uses upower)
       services.upower.enable = true;
+      # Disable alternatives
+      services.power-profiles-daemon.enable = false;
+      # services.tlp.enable = false;
     })
   ];
 }

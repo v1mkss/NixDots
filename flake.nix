@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser = {
+        url = "github:0xc000022070/zen-browser-flake";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs =
@@ -51,9 +55,6 @@
           home-manager.nixosModules.home-manager
           {
             nixpkgs.config.allowUnfree = true;
-            nixpkgs.config.permittedInsecurePackages = [
-              "dotnet-sdk-6.0.428"
-            ];
 
             nix.settings.experimental-features = [
               "nix-command"
@@ -68,8 +69,8 @@
                 username = defaultUser;
                 # Pass the list of users to home.nix
                 users = getUsers;
+                inherit inputs;
               };
-
               users =
                 let
                   homeDirUsers = getUsers;

@@ -9,7 +9,7 @@
 
     # Enable GPG signing
     signing = {
-      key = "F46760784F31A90E"; # REPLACE_ME
+      key = "78AFBBDECD279E2E"; # REPLACE_ME
       signByDefault = true;
     };
 
@@ -17,7 +17,7 @@
     extraConfig = {
       init.defaultBranch = "master";
       core = {
-        editor = "code --wait";
+        editor = "zeditor --wait";
         autocrlf = "input";
       };
       pull.rebase = true;

@@ -7,19 +7,18 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 ### 🖥️ System
 
 - **Desktop Environment**: Choice between GNOME or KDE Plasma 6
-- **Hardware Support**: Optimized for AMD GPU with ROCm support
+- **Hardware Support**: Optimized for AMD CPU/GPU
 - **Audio**: PipeWire audio system
 - **Fonts**: Cascadia Code as default font family
 
 ### 🛠️ Development Environment
 
 - **IDEs & Editors**:
-  - VSCode
-  - Godot 4.3 Mono (C# Support)
+  - Zed Editor
+  - Godot 4.4
   - Blender
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
-  - .NET SDK 8
   - Rust toolchain with cargo
   - Bun JavaScript runtime
 - **Build Tools**: CMake, GCC, Make, pkg-config
@@ -27,7 +26,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 
 ### 📱 Applications
 
-- **Browsers**: Vivaldi
+- **Browsers**: Zen Browser
 - **Communication**:
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
