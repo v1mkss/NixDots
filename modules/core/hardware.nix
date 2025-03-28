@@ -21,6 +21,7 @@ in
   # Hardware configuration
   hardware = {
     cpu.amd.updateMicrocode = true;
+    enableRedistributableFirmware = true;
 
     # Graphics configuration
     graphics = {
@@ -56,6 +57,16 @@ in
     VDPAU_DRIVER = "radeonsi";
     LIBVA_DRIVER_NAME = "radeonsi";
 
-    AMD_VULKAN_ICD = "RADV";
+    # Explicitly tell the Vulkan loader to only use the RADV driver (64-bit and 32-bit).
+    VK_ICD_FILENAMES = lib.concatStringsSep ":" [
+      "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
+      "${pkgs.driversi686Linux.mesa}/share/vulkan/icd.d/radeon_icd.i686.json"
+    ];
+
+    # Explicitly tell GLVND where to find EGL vendor libraries (64-bit and 32-bit).
+    __EGL_VENDOR_LIBRARY_FILENAMES = lib.concatStringsSep ":" [
+      "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json"
+      "${pkgs.driversi686Linux.mesa}/share/glvnd/egl_vendor.d/50_mesa.json"
+    ];
   };
 }
