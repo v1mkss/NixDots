@@ -6,6 +6,7 @@
     godot_4 # Game development engine
     lazygit # Terminal UI for git
     blender # 3D creation suite
+    androidStudioPackages.dev # Android Studio
 
     # Runtime and SDK
     bun # Fast JavaScript runtime/toolkit
