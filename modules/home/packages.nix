@@ -15,7 +15,7 @@
     # Media
     easyeffects
     mpv
-    obs-studio
+    gpu-screen-recorder-gtk
     spotify
     yt-dlp
 
