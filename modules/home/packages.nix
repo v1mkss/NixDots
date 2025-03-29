@@ -5,8 +5,8 @@
 }:
 {
   imports = [
-    ./fish.nix
     ./development.nix
+    ./fish.nix
     ./git.nix
     ./steam.nix
   ];

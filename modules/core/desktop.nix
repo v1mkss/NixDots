@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, desktopEnv, ... }:
 let
   # --- Variable for selecting the DE ---
-  desktopEnvironment = "kde"; # Options: "gnome" or "kde"
+  desktopEnvironment = desktopEnv;
 
   # --- GNOME specific packages ---
   gnomePackages = with pkgs; [
