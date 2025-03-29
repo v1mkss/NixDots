@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-  # Define Java packages without installing them directly
   jdk8 = pkgs.jdk8;
   jdk11 = pkgs.jdk11;
   jdk17 = pkgs.jdk17;
@@ -22,12 +21,14 @@ in
       set -g fish_color_quote green
       set -g fish_color_operator yellow
 
-      # Java version management (using variables only)
-      set -gx JAVA_8_HOME "${jdk8}/lib/openjdk"
-      set -gx JAVA_11_HOME "${jdk11}/lib/openjdk"
-      set -gx JAVA_17_HOME "${jdk17}/lib/openjdk"
-      set -gx JAVA_21_HOME "${jdk21}/lib/openjdk"
-      set -gx JAVA_HOME $JAVA_21_HOME  # Default to Java 21
+      # Java version management
+      set -gx JAVA_8_HOME "${jdk8}"
+      set -gx JAVA_11_HOME "${jdk11}"
+      set -gx JAVA_17_HOME "${jdk17}"
+      set -gx JAVA_21_HOME "${jdk21}"
+      # Set the default JAVA_HOME
+      set -gx JAVA_HOME $JAVA_21_HOME
+      fish_add_path $JAVA_HOME/bin
 
       # Rust
       set -gx RUSTUP_HOME $HOME/.rustup
@@ -95,19 +96,30 @@ in
       # Function for switching Java version
       use-java = {
         body = ''
+          # Determine the new JAVA_HOME based on input
+          set -l new_java_home
           switch $argv[1]
             case "8"
-              set -gx JAVA_HOME $JAVA_8_HOME
+              set new_java_home $JAVA_8_HOME
             case "11"
-              set -gx JAVA_HOME $JAVA_11_HOME
+              set new_java_home $JAVA_11_HOME
             case "17"
-              set -gx JAVA_HOME $JAVA_17_HOME
+              set new_java_home $JAVA_17_HOME
             case "21"
-              set -gx JAVA_HOME $JAVA_21_HOME
+              set new_java_home $JAVA_21_HOME
             case '*'
               echo "Usage: use-java [8|11|17|21]"
+              # Return non-zero status to indicate error
+              return 1
           end
-          echo "JAVA_HOME is now $JAVA_HOME"
+
+          # Update the global JAVA_HOME variable
+          set -gx JAVA_HOME $new_java_home
+
+          # Prepend the corresponding bin directory to PATH
+          fish_add_path "$JAVA_HOME/bin"
+
+          echo "Java version set to: $argv[1]"
         '';
       };
     };

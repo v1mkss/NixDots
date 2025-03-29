@@ -3,16 +3,6 @@
   programs.git = {
     enable = true;
 
-    # Basic configuration
-    userName = "Volodia Kraplich";
-    userEmail = "v1mkss.m+git@gmail.com";
-
-    # Enable GPG signing
-    signing = {
-      key = "78AFBBDECD279E2E"; # REPLACE_ME
-      signByDefault = true;
-    };
-
     # Default settings
     extraConfig = {
       init.defaultBranch = "master";

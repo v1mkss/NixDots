@@ -1,5 +1,7 @@
-{ username, ... }:
-
+{
+  username,
+  ...
+}:
 {
   imports = [
     ../../modules/home/packages.nix
@@ -11,5 +13,18 @@
     stateVersion = "25.05";
   };
 
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+
+    git = {
+      # Basic configuration
+      userName = "Volodia Kraplich";
+      userEmail = "v1mkss.m+git@gmail.com";
+
+      signing = {
+        key = "78AFBBDECD279E2E";
+        signByDefault = true;
+      };
+    };
+  };
 }

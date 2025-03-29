@@ -18,8 +18,8 @@
   # Allow deletion of old Nix generations
   nix.gc = {
     automatic = true; # Automatically run GC
-    dates = "weekly"; # How often
-    options = "--delete-older-than 7d"; # Delete generations older than 7 days
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # Nix settings

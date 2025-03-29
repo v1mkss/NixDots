@@ -5,8 +5,8 @@
 }:
 {
   imports = [
-    ./fish.nix
     ./development.nix
+    ./fish.nix
     ./git.nix
     ./steam.nix
   ];
@@ -15,7 +15,7 @@
     # Media
     easyeffects
     mpv
-    obs-studio
+    gpu-screen-recorder-gtk
     spotify
     yt-dlp
 

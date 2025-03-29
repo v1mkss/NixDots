@@ -17,6 +17,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
   - Zed Editor
   - Godot 4.4
   - Blender
+  - Intellij IDEA Ultimate
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
   - Rust toolchain with cargo
@@ -33,7 +34,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 - **Media**:
   - EasyEffects
   - MPV Player
-  - OBS Studio
+  - Gpu Screen Recorder
   - Spotify
   - yt-dlp
 - **Office**: LibreOffice Qt6

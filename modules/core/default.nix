@@ -10,6 +10,5 @@
     ./packages.nix
     ./services.nix
     ./sysctl.nix
-    ./users.nix
   ];
 }

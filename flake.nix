@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,77 +13,55 @@
       };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-      defaultUser = "v1mkss";
+      # Function to generate a NixOS configuration for a given host
+      mkNixosSystem = { hostname, username ? hostname, system ? "x86_64-linux", desktopEnv ? "kde" }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs hostname username desktopEnv;
+          };
+          modules = [
+            # Import host-specific configuration
+            ./hosts/${hostname}/configuration.nix
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+            # Import home-manager module
+            home-manager.nixosModules.home-manager
+            {
+              # Global Nixpkgs settings
+              nixpkgs.config.allowUnfree = true;
 
-      # Function to get the list of users from /home directory
-      getUsers =
-        let
-          readDir = dir: builtins.readDir dir;
-          isDirectory = type: type == "directory";
-          filterDirectories =
-            dir:
-            let
-              contents = readDir dir;
-            in
-            builtins.filter (name: isDirectory contents.${name}) (builtins.attrNames contents);
-        in
-        if builtins.pathExists /home then filterDirectories /home else [ defaultUser ];
-    in
-    {
-      nixosConfigurations.v1mkss = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          username = defaultUser;
-        };
-        modules = [
-          ./hosts/v1mkss/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            nixpkgs.config.allowUnfree = true;
+              # Nix settings
+              nix.settings.experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
 
-            nix.settings.experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "backup";
-              extraSpecialArgs = {
-                username = defaultUser;
-                # Pass the list of users to home.nix
-                users = getUsers;
-                inherit inputs;
+              # Home Manager configuration
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "backup";
+                extraSpecialArgs = {
+                   inherit inputs hostname username desktopEnv; # Pass args to home-manager modules
+                };
+                # Configure the user specified for this host
+                users.${username} = import ./hosts/${hostname}/home.nix;
               };
-              users =
-                let
-                  homeDirUsers = getUsers;
-                  # Create configuration for each user from /home
-                  mkUserConfig = user: {
-                    ${user} = import ./hosts/v1mkss/home.nix;
-                  };
-                in
-                # Merge all user configurations
-                builtins.foldl' (acc: user: acc // mkUserConfig user) { } homeDirUsers;
-            };
-          }
-        ];
+            }
+          ];
+        };
+
+      # Define hosts and their configurations
+      hostConfigurations = {
+        # Default user for v1mkss host
+        v1mkss = mkNixosSystem { hostname = "v1mkss"; username = "v1mkss"; desktopEnv = "kde"; };
+        # Example for adding another host:
+        # another-host = mkNixosSystem { hostname = "another-host"; username = "someuser"; desktopEnv = "kde"; };
       };
-    };
+    in
+  {
+      nixosConfigurations = hostConfigurations;
+  };
 }

@@ -73,7 +73,5 @@ let
 
 in
 {
-  # Assign the parsed attribute set to boot.kernel.sysctl
-  # Use mkIf to only apply if settings were actually found/parsed
   boot.kernel.sysctl = lib.mkIf (sysctlSettings != {}) sysctlSettings;
 }

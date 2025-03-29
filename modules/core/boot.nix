@@ -11,6 +11,9 @@
     kernelModules = [ "amdgpu" ];
   };
 
+  # Support for AMDGPU video driver
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
   #Swap
   zramSwap = {
      enable = true;
