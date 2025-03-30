@@ -32,6 +32,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
+- DaVinci Resolve (To install, uncomment `davinci-resolve.nix` in `modules/home/packages.nix`)
   - EasyEffects
   - MPV Player
   - Gpu Screen Recorder

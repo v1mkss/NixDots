@@ -89,5 +89,5 @@ let
     };
 in
 {
-  environment.systemPackages = [ davinci-resolve-studio ];
+  home.packages = [ davinci-resolve-studio ];
 }
