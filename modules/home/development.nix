@@ -5,8 +5,8 @@
     zed-editor-fhs # Alternative editor
     godot_4 # Game development engine
     lazygit # Terminal UI for git
-    blender # 3D creation suite
     jetbrains.idea-ultimate # IntelliJ IDEA
+    androidStudioPackages.canary # Android Studio
 
     # Runtime and SDK
     bun # Fast JavaScript runtime/toolkit
