@@ -1,6 +1,6 @@
 # 🚀 NixOS Config
 
-My minimal NixOS setup with Flakes and Home Manager for efficient development and everyday use.
+My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamlined development and daily usage.
 
 ## ⚙️ Core Features
 
@@ -16,7 +16,6 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 - **IDEs & Editors**:
   - Zed Editor
   - Godot 4.4
-  - Intellij IDEA Ultimate
   - Android Studio Canary
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
@@ -35,7 +34,7 @@ My minimal NixOS setup with Flakes and Home Manager for efficient development an
 - DaVinci Resolve (To install, uncomment `davinci-resolve.nix` in `modules/home/packages.nix`)
   - EasyEffects
   - MPV Player
-  - Gpu Screen Recorder
+  - GPU Screen Recorder
   - Spotify
   - yt-dlp
 - **Office**: LibreOffice Qt6
