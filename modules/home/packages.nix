@@ -9,6 +9,7 @@
     ./fish.nix
     ./git.nix
     ./steam.nix
+    # ./pkgs/davinci-resolve.nix # Davinci Resolve Studio
   ];
 
   home.packages = with pkgs; [

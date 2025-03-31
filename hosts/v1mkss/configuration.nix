@@ -28,10 +28,12 @@
   # Program configurations
   programs = {
     fish.enable = true;
+    gpu-screen-recorder.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+    nix-ld.enable = true;
   };
 
   # Security settings

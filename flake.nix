@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration";
+  description = "NixOS configuration by Volodia Kraplich(v1mkss)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
@@ -58,7 +58,7 @@
         # Default user for v1mkss host
         v1mkss = mkNixosSystem { hostname = "v1mkss"; username = "v1mkss"; desktopEnv = "kde"; };
         # Example for adding another host:
-        # another-host = mkNixosSystem { hostname = "another-host"; username = "someuser"; desktopEnv = "kde"; };
+        # another-host = mkNixosSystem { hostname = "another-host"; username = "someuser"; desktopEnv = "gnome"; };
       };
     in
   {
