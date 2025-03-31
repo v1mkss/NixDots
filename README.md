@@ -31,7 +31,7 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
-- DaVinci Resolve (To install, uncomment `davinci-resolve.nix` in `modules/home/packages.nix`)
+  - DaVinci Resolve (To install, uncomment `davinci-resolve.nix` in `modules/home/packages.nix`)
   - EasyEffects
   - MPV Player
   - GPU Screen Recorder
