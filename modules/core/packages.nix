@@ -10,12 +10,6 @@
     zip
     unzip
 
-    # GPU/Graphics tools
-    vulkan-tools # vkinfo, vkcube
-    clinfo # Check OpenCL
-    glxinfo # Check OpenGL
-    libva-utils # vainfo
-
     # Other useful system tools
     pciutils # lspci
     usbutils # lsusb

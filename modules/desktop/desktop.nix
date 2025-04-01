@@ -5,6 +5,9 @@ let
 
   # --- GNOME specific packages ---
   gnomePackages = with pkgs; [
+    papirus-icon-theme # Icon theme
+
+
     gnome-tweaks # GNOME tweaking tool
     gnome-extension-manager # Extension manager
   ];
@@ -12,6 +15,7 @@ let
   # --- KDE specific packages ---
   kdePackages = with pkgs; [
     ghostty # New GPU-accelerated terminal
+    papirus-icon-theme # Icon theme
 
     # KDE Integration and Utilities
     pkgs.kdePackages.sddm-kcm # SDDM configuration module in System Settings

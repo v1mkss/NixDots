@@ -2,8 +2,9 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     ../../modules/core
+    ../../modules/desktop
+    ../hardware-configuration.nix
   ];
 
   # Networking configuration
@@ -20,6 +21,7 @@
         "networkmanager"
         "video"
         "audio"
+        "adbusers"
       ];
       shell = pkgs.fish;
     };
@@ -27,8 +29,8 @@
 
   # Program configurations
   programs = {
+    adb.enable = true;
     fish.enable = true;
-    gpu-screen-recorder.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

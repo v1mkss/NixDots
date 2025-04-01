@@ -9,5 +9,5 @@
 result/
 
 ## Nix ##
-hosts/*/hardware-configuration.nix
+hosts/hardware-configuration.nix
 flake.lock
