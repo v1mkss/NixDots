@@ -4,10 +4,7 @@
   ...
 }:
 {
-  imports = [
-    # ./pkgs/davinci-resolve.nix # Davinci Resolve Studio
-    ./pkgs/steam
-  ];
+  imports = [ ./pkgs ];
 
   home.packages = with pkgs; [
     # Media

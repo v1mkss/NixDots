@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../../modules/desktop/home
+    ../../profiles/desktop/home
   ];
 
   home = {

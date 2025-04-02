@@ -18,7 +18,7 @@ let
     papirus-icon-theme # Icon theme
 
     # KDE Integration and Utilities
-    pkgs.kdePackages.sddm-kcm # SDDM configuration module in System Settings
+    pkgs.kdePackages.sddm-kcm # SDDM configuration
     pkgs.kdePackages.powerdevil # KDE power management
   ];
 
@@ -64,9 +64,6 @@ in
       services.xserver.enable = true;
       # Exclude basic xterm if not needed
       services.xserver.excludePackages = with pkgs; [ xterm ];
-
-      # Enable Graphics drivers
-      hardware.graphics.enable = true;
     }
 
     # --- Configuration for GNOME ---

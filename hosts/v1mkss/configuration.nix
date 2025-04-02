@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../modules/core
-    ../../modules/desktop
+    ../../profiles/core
+    ../../profiles/desktop
     ../hardware-configuration.nix
   ];
 
