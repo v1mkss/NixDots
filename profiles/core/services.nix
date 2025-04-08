@@ -2,9 +2,6 @@
 {
   # General system services
   services = {
-    # Printing
-    printing.enable = true;
-
     # Periodic SSD trim
     fstrim.enable = true;
 
@@ -23,5 +20,5 @@
   };
 
   # Nix settings
-  nix.settings.auto-optimise-store = true; # Automatically optimize Nix store
+  nix.settings.auto-optimise-store = true;
 }

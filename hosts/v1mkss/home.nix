@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../../modules/home/packages.nix
+    ../../profiles/desktop/home
   ];
 
   home = {
@@ -22,7 +22,7 @@
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {
-        key = "78AFBBDECD279E2E";
+        key = "3325BAABB555B6DF";
         signByDefault = true;
       };
     };

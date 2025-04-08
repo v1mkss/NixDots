@@ -11,13 +11,10 @@
     kernelModules = [ "amdgpu" ];
   };
 
-  # Support for AMDGPU video driver
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
   #Swap
   zramSwap = {
      enable = true;
      algorithm = "zstd lz4";
-     memoryPercent = 30;
+     memoryPercent = 24;
   };
 }

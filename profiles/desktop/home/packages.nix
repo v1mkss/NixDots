@@ -4,20 +4,13 @@
   ...
 }:
 {
-  imports = [
-    ./development.nix
-    ./fish.nix
-    ./git.nix
-    ./steam.nix
-    # ./pkgs/davinci-resolve.nix # Davinci Resolve Studio
-  ];
+  imports = [ ./pkgs ];
 
   home.packages = with pkgs; [
     # Media
     easyeffects
     mpv
-    gpu-screen-recorder-gtk
-    spotify
+    youtube-music
     yt-dlp
 
     # Internet

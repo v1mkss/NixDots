@@ -45,7 +45,7 @@ in
 
     shellAliases = {
       # System
-      cleanup = "sudo nix-collect-garbage -d";
+      cleanup = "nix-collect-garbage  --delete-old; sudo nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
       optimize = "echo Nix-Store Optimization... Please wait; sudo nix-store --optimize";
 
       # Navigation

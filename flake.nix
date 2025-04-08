@@ -10,7 +10,7 @@
     zen-browser = {
         url = "github:0xc000022070/zen-browser-flake";
         inputs.nixpkgs.follows = "nixpkgs";
-      };
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -30,7 +30,10 @@
             home-manager.nixosModules.home-manager
             {
               # Global Nixpkgs settings
-              nixpkgs.config.allowUnfree = true;
+              nixpkgs.config = {
+                allowUnfree = true;
+                android_sdk.accept_license = true;
+              };
 
               # Nix settings
               nix.settings.experimental-features = [
