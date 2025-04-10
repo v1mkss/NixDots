@@ -16,7 +16,6 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 - **IDEs & Editors**:
   - Zed Editor
   - Godot 4.4
-  - Android Studio Canary
 - **Languages & Runtimes**:
   - Java (8, 11, 17, 21) with version switcher
   - Rust toolchain with cargo
@@ -34,8 +33,7 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
   - DaVinci Resolve (To install, uncomment `davinci-resolve.nix` in [profiles/desktop/home/packages.nix](https://github.com/v1mkss/NixDots/blob/update/profiles/desktop/home/pkgs/default.nix)
   - EasyEffects
   - MPV Player
-  - GPU Screen Recorder
-  - Spotify
+  - YouTube Music
   - yt-dlp
 - **Office**: LibreOffice Qt6
 - **Gaming**:

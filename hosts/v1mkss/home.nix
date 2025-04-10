@@ -22,7 +22,7 @@
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {
-        key = "3325BAABB555B6DF";
+        key = "D4B9586507C7C61B";
         signByDefault = true;
       };
     };
