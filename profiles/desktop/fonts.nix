@@ -1,7 +1,13 @@
 { pkgs, ... }:
 {
   fonts = {
-    packages = with pkgs; [ cascadia-code ];
+    packages = with pkgs; [
+      cascadia-code
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      roboto
+    ];
 
     fontconfig = {
       defaultFonts = {

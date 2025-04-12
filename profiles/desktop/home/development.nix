@@ -1,35 +1,39 @@
 { pkgs, ... }:
 
 let
-  # Group development tools for clarity
+  # --- General Purpose Development Tools ---
   developmentTools = with pkgs; [
-    zed-editor-fhs # Alternative editor
+    zed-editor-fhs # Alternative code editor
     godot_4        # Game development engine
     lazygit        # Terminal UI for git
   ];
 
-  # Runtimes and SDKs managed via home-manager
+  # --- Runtimes and SDKs ---
   runtimesAndSDKs = with pkgs; [
     bun            # Fast JavaScript runtime/toolkit
-    rustc          # Rust compiler
-    cargo          # Rust package manager/build tool
   ];
 
-  # Common build tools needed globally
-  buildTools = with pkgs; [
-    # C/C++ Toolchain (LLVM/Clang)
-    clang # C/C++ Compiler
-    lld   # Linker
+  # --- C/C++ Toolchain ---
+  llvm = pkgs.llvmPackages_latest;
 
-    # C/C++ Toolchain (GCC related)
-    gdb                # Debugger
+  # C/C++ Build and Development Tools
+  buildTools = with pkgs; [
+    # Core Clang Toolset
+    llvm.clang       # Clang C/C++ Compiler
+    llvm.lld         # LLVM's Linker
+    llvm.clang-tools
+    llvm.lldb        # LLVM's Debugger (alternative to GDB, integrates well with Clang)
+
+    # GCC Toolchain (still useful, especially GDB)
+    gdb              # GNU Debugger (can debug Clang-compiled code)
 
     # Build Systems & Helpers
-    cmake
-    meson
-    ninja
-    gnumake
-    pkg-config
+    cmake            # Cross-platform build system generator
+    meson            # Modern, fast build system (works well with Ninja)
+    ninja            # Very fast build system backend (used by CMake/Meson)
+    gnumake          # Standard Make utility
+    pkg-config       # Utility to retrieve metadata about installed libraries
+    devenv
   ];
 
 in
@@ -39,9 +43,10 @@ in
   ];
 
   # Install packages into the user profile
+  # Combine all package lists
   home.packages = developmentTools ++ runtimesAndSDKs ++ buildTools;
 
-  # Configure environment variables for tools managed outside the Nix store
+  # Configure environment variables
   home.sessionVariables = {
     # Bun configuration
     BUN_INSTALL = "$HOME/.bun";

@@ -16,11 +16,11 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       # Function to generate a NixOS configuration for a given host
-      mkNixosSystem = { hostname, username ? hostname, system ? "x86_64-linux", desktopEnv ? "kde" }:
+      mkNixosSystem = { hostname, username ? hostname, system ? "x86_64-linux", desktopEnv ? "kde", nixstateVersion ? "25.05" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs hostname username desktopEnv;
+            inherit inputs hostname username desktopEnv nixstateVersion;
           };
           modules = [
             # Import host-specific configuration
@@ -30,10 +30,7 @@
             home-manager.nixosModules.home-manager
             {
               # Global Nixpkgs settings
-              nixpkgs.config = {
-                allowUnfree = true;
-                android_sdk.accept_license = true;
-              };
+              nixpkgs.config.allowUnfree = true;
 
               # Nix settings
               nix.settings.experimental-features = [
@@ -47,7 +44,7 @@
                 useUserPackages = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = {
-                   inherit inputs hostname username desktopEnv;
+                   inherit inputs hostname username desktopEnv nixstateVersion;
                 };
                 # Configure the user specified for this host
                 users.${username} = import ./hosts/${hostname}/home.nix;
