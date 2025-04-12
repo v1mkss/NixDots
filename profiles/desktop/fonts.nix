@@ -15,6 +15,9 @@
         sansSerif = [ "Cascadia Code" ];
         serif = [ "Cascadia Code" ];
       };
+
+      antialias = true;
+
     };
 
     # Enable font support
