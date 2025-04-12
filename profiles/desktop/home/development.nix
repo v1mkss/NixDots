@@ -3,7 +3,6 @@
 let
   # --- General Purpose Development Tools ---
   developmentTools = with pkgs; [
-    zed-editor-fhs # Alternative code editor
     godot_4        # Game development engine
     lazygit        # Terminal UI for git
   ];

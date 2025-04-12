@@ -19,6 +19,6 @@
     nixd
     nixfmt-rfc-style
 
-    openssl
+    openssl_3
   ];
 }

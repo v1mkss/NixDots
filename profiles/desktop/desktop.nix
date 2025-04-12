@@ -64,6 +64,7 @@ in
       services.xserver.enable = true;
       # Exclude basic xterm if not needed
       services.xserver.excludePackages = with pkgs; [ xterm ];
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
     }
 
     # --- Configuration for GNOME ---
