@@ -8,7 +8,17 @@
       # Remove the default fish greeting message
       set -g fish_greeting
 
-      # Configure fish color scheme (example)
+      # Not found handler
+      function __fish_command_not_found_handler --on-event fish_command_not_found
+        set_color blue
+        echo -n "❄ "
+        set_color red
+        echo -n "$argv[1]"
+        set_color normal
+        echo " not found"
+      end
+
+      # Configure fish color scheme
       set -g fish_color_normal normal
       set -g fish_color_command blue
       set -g fish_color_param cyan

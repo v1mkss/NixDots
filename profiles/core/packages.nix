@@ -15,7 +15,6 @@
     usbutils # lsusb
 
     # Additional tools
-    nil
     nixd
     nixfmt-rfc-style
 

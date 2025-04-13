@@ -1,4 +1,9 @@
-{ lib, pkgs, desktopEnv, ... }:
+{
+  lib,
+  pkgs,
+  desktopEnv,
+  ...
+}:
 let
   # --- Variable for selecting the DE ---
   desktopEnvironment = desktopEnv;
@@ -44,7 +49,7 @@ let
     seahorse
     totem
     yelp
-  ];# ++ (with pkgs.gnome; []);
+  ]; # ++ (with pkgs.gnome; []);
 
   # --- Packages to exclude from KDE ---
   kdeExcludePackages = with pkgs.kdePackages; [
@@ -86,15 +91,15 @@ in
       # Power management for GNOME
       services.power-profiles-daemon.enable = true;
       # services.tlp.enable = false;
-      # services.upower.enable = false; 
+      # services.upower.enable = false;
     })
 
     # --- Configuration for KDE Plasma ---
     (lib.mkIf (desktopEnvironment == "kde") {
       # KDE options moved out of services.xserver
       services.displayManager.sddm = {
-         enable = true;
-         wayland.enable = true; # Enable Wayland session for SDDM
+        enable = true;
+        wayland.enable = true; # Enable Wayland session for SDDM
       };
       services.desktopManager.plasma6.enable = true;
 

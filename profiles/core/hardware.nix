@@ -10,9 +10,9 @@ let
   confFiles = lib.filter (name: lib.hasSuffix ".conf" name) modprobeFiles;
 
   # Read the content of each .conf file and concatenate them
-  modprobeConfigContent = lib.concatMapStringsSep "\n"
-    (name: builtins.readFile (modprobeDir + "/${name}"))
-    confFiles;
+  modprobeConfigContent = lib.concatMapStringsSep "\n" (
+    name: builtins.readFile (modprobeDir + "/${name}")
+  ) confFiles;
 in
 {
   # Include configurations from ./modprobe.d/

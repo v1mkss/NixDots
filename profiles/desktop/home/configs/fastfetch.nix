@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.fastfetch = {
@@ -38,7 +38,7 @@
         }
         {
           type = "packages";
-          format = "{} (nix)";
+          format = "{}";
           key = "PKGS  ";
           keyColor = "33";
         }

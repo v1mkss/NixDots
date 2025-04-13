@@ -7,7 +7,6 @@
     ./services.nix
   ];
 
-
   # Diagnostic tools for graphics and compute APIs
   environment.systemPackages = with pkgs; [
     vulkan-tools # vkinfo, vkcube

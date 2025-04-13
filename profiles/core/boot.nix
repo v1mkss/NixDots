@@ -6,7 +6,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = ["zswap.enabled=1"];
+    kernelParams = [ "zswap.enabled=1" ];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "amdgpu" ];
   };
