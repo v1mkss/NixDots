@@ -1,4 +1,10 @@
-{ pkgs, username, hostname, nixstateVersion, ... }:
+{
+  pkgs,
+  username,
+  hostname,
+  nixstateVersion,
+  ...
+}:
 
 let
   userConfig = {

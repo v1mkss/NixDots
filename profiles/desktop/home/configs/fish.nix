@@ -8,7 +8,12 @@
       # Remove the default fish greeting message
       set -g fish_greeting
 
-      # Not found handler
+      # Prevent history sharing between host and containers
+      if test "$container" = "podman" -o "$container" = "docker" -o -n "$DISTROBOX_ENTER_PATH"
+        set -g fish_history ""
+      end
+
+      # Minimalistic NixOS-themed command not found handler
       function __fish_command_not_found_handler --on-event fish_command_not_found
         set_color blue
         echo -n "❄ "
