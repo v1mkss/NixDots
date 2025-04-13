@@ -7,19 +7,19 @@ let
   gnomePackages = with pkgs; [
     papirus-icon-theme # Icon theme
 
-
     gnome-tweaks # GNOME tweaking tool
     gnome-extension-manager # Extension manager
   ];
 
   # --- KDE specific packages ---
   kdePackages = with pkgs; [
-    ghostty # New GPU-accelerated terminal
+    alacritty # GPU-accelerated terminal
     papirus-icon-theme # Icon theme
 
     # KDE Integration and Utilities
     pkgs.kdePackages.sddm-kcm # SDDM configuration
     pkgs.kdePackages.powerdevil # KDE power management
+    # pkgs.kdePackages.kdialog # File dialogs for non-KDE apps
   ];
 
   # --- Packages to exclude from GNOME ---
@@ -47,13 +47,14 @@ let
   ];# ++ (with pkgs.gnome; []);
 
   # --- Packages to exclude from KDE ---
-  kdeExcludePackages = with pkgs; [] ++ (with pkgs.kdePackages; [
+  kdeExcludePackages = with pkgs.kdePackages; [
     baloo
     elisa
     kate
     khelpcenter
     konsole
-  ]);
+    xwaylandvideobridge
+  ];
 
 in
 {
@@ -64,7 +65,10 @@ in
       services.xserver.enable = true;
       # Exclude basic xterm if not needed
       services.xserver.excludePackages = with pkgs; [ xterm ];
-      environment.sessionVariables.NIXOS_OZONE_WL = "1";
+      environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1"; # Hint for Ozone platform (Chromium/Electron) to use Wayland
+        ELECTRON_OZONE_PLATFORM_HINT = "auto"; # Encourage Electron apps to auto-detect Wayland
+      };
     }
 
     # --- Configuration for GNOME ---
@@ -72,7 +76,7 @@ in
       # GNOME still uses services.xserver for its GDM/Desktop settings
       services.xserver = {
         displayManager.gdm.enable = true;
-        displayManager.gdm.wayland = true; # Wayland is enabled by default
+        displayManager.gdm.wayland = true;
         desktopManager.gnome.enable = true;
       };
       environment.systemPackages = gnomePackages;
@@ -81,9 +85,8 @@ in
 
       # Power management for GNOME
       services.power-profiles-daemon.enable = true;
-      # Disable alternatives to avoid conflicts
       # services.tlp.enable = false;
-      # services.upower.enable = false; # power-profiles-daemon provides a similar service
+      # services.upower.enable = false; 
     })
 
     # --- Configuration for KDE Plasma ---
@@ -98,9 +101,8 @@ in
       environment.systemPackages = kdePackages;
       environment.plasma6.excludePackages = kdeExcludePackages;
 
-      # Power management for KDE (uses upower)
+      # Power management for KDE
       # services.upower.enable = true;
-      # Disable alternatives
       services.power-profiles-daemon.enable = true;
       # services.tlp.enable = false;
     })

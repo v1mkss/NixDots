@@ -20,5 +20,8 @@
     nixfmt-rfc-style
 
     openssl_3
+
+    preload
+    rng-tools
   ];
 }

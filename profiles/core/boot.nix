@@ -11,10 +11,10 @@
     kernelModules = [ "amdgpu" ];
   };
 
-  #Swap
+  # Swap
   zramSwap = {
-     enable = true;
-     algorithm = "zstd lz4";
-     memoryPercent = 24;
+    enable = true;
+    algorithm = "zstd lz4";
+    memoryPercent = 50;
   };
 }

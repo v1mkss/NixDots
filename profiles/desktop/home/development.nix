@@ -3,6 +3,7 @@
 let
   # --- General Purpose Development Tools ---
   developmentTools = with pkgs; [
+    vscode-fhs     # Visual Studio Code (FHS compatible)
     godot_4        # Game development engine
     lazygit        # Terminal UI for git
   ];

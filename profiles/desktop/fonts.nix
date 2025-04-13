@@ -5,8 +5,11 @@
       cascadia-code
       noto-fonts
       noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
       roboto
+
+      nerd-fonts.symbols-only
     ];
 
     fontconfig = {
@@ -17,6 +20,9 @@
       };
 
       antialias = true;
+      hinting.enable = true; # Enable hinting
+      hinting.style = "slight"; # Set hint style
+      subpixel.rgba = "rgb"; # Set subpixel rendering order (common for LCDs)
 
     };
 

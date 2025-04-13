@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     # Enable printing services
@@ -7,4 +7,7 @@
     # Support for video driver
     xserver.videoDrivers = [ "amdgpu" ];
   };
+
+  # Enable gamemode for performance optimizations during gaming
+  programs.gamemode.enable = true;
 }
