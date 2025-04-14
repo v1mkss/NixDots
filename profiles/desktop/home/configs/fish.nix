@@ -30,14 +30,6 @@
       set -g fish_color_error red
       set -g fish_color_quote green
       set -g fish_color_operator yellow
-
-      # --- Environment Setup ---
-      # Bun Environment
-      set -gx BUN_INSTALL "$HOME/.bun"
-      fish_add_path "$BUN_INSTALL/bin" # Add bun to PATH
-
-      # Additional User-Specific Paths
-      fish_add_path "$HOME/.local/bin" # Standard location for user scripts/binaries
     '';
 
     # Define convenient shell aliases
@@ -52,12 +44,12 @@
       "..." = "cd ../..";
 
       # Modern Unix Command Replacements
-      # Use direct paths from pkgs for robustness
       ls = "${pkgs.eza}/bin/eza";
       l = "${pkgs.eza}/bin/eza -l";
       la = "${pkgs.eza}/bin/eza -la";
       tree = "${pkgs.eza}/bin/eza --tree";
       cat = "${pkgs.bat}/bin/bat";
+      untar = "tar -xvf"; # Extract tar archives
     };
 
     # Define custom fish functions

@@ -14,7 +14,8 @@
     pciutils # lspci
     usbutils # lsusb
 
-    # Additional tools
+    # Nix Language Server
+    nil
     nixd
     nixfmt-rfc-style
 
