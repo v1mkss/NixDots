@@ -3,7 +3,7 @@
 let
   # --- General Purpose Development Tools ---
   developmentTools = with pkgs; [
-    vscode-fhs     # Visual Studio Code (FHS compatible)
+    vscode-fhs     # Visual Studio Code
     zed-editor-fhs
     godot_4        # Game development engine
     lazygit        # Terminal UI for git
@@ -12,7 +12,7 @@ let
   # --- Runtimes and SDKs ---
   runtimesAndSDKs = with pkgs; [
     bun            # Fast JavaScript runtime/toolkit
-    dart           # Dart SDK (includes LSP)
+    dart           # Dart SDK
   ];
 
   # --- C/C++ Toolchain ---

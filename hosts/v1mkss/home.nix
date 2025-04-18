@@ -15,9 +15,7 @@
 
 
     # nix-shell configuration
-    file.".config/nixpkgs/config.nix".text = ''
-      { allowUnfree = true; }
-    '';
+    file.".config/nixpkgs/config.nix".text = ''{ allowUnfree = true; }'';
   };
 
   programs = {
@@ -29,7 +27,7 @@
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {
-        key = "17C0806D35B56A88";
+        key = "8FE091CB442751E8";
         signByDefault = true;
       };
     };

@@ -18,13 +18,17 @@ let
 
   # --- KDE specific packages ---
   kdePackages = with pkgs; [
-    alacritty # GPU-accelerated terminal
     papirus-icon-theme # Icon theme
 
     # KDE Integration and Utilities
     pkgs.kdePackages.sddm-kcm # SDDM configuration
     pkgs.kdePackages.powerdevil # KDE power management
     # pkgs.kdePackages.kdialog # File dialogs for non-KDE apps
+  ];
+
+  # --- Packages to exclude globally ---
+  globalExcludePackages = with pkgs; [
+    nixos-render-docs
   ];
 
   # --- Packages to exclude from GNOME ---
@@ -45,7 +49,6 @@ let
     gnome-weather
     hitori
     iagno
-    nixos-render-docs
     seahorse
     totem
     yelp
@@ -85,7 +88,7 @@ in
         desktopManager.gnome.enable = true;
       };
       environment.systemPackages = gnomePackages;
-      environment.gnome.excludePackages = gnomeExcludePackages;
+      environment.gnome.excludePackages = gnomeExcludePackages ++ globalExcludePackages;
       # services.gnome.core-utilities.enable = true; # Enables basic utilities, might be useful
 
       # Power management for GNOME
@@ -104,7 +107,7 @@ in
       services.desktopManager.plasma6.enable = true;
 
       environment.systemPackages = kdePackages;
-      environment.plasma6.excludePackages = kdeExcludePackages;
+      environment.plasma6.excludePackages = kdeExcludePackages ++ globalExcludePackages;
 
       # Power management for KDE
       # services.upower.enable = true;
