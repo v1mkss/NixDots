@@ -11,7 +11,7 @@
     kernelModules = [ "amdgpu" ];
   };
 
-  # Swap
+  # Swap configuration using zram
   zramSwap = {
     enable = true;
     algorithm = "zstd lz4";

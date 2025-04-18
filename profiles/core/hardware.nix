@@ -35,7 +35,6 @@ in
         vulkan-validation-layers
         # OpenCL
         mesa.opencl
-        # rocm-opencl-icd # If ROCm OpenCL is needed (for computations)
         # VA-API (Video Acceleration API)
         libva
         libva-utils # For vainfo tool
@@ -53,20 +52,20 @@ in
 
   # Environment variables for graphics
   environment.variables = {
-    RUSTICL_ENABLE = "radeonsi"; # Use Mesa OpenCL implementation (Rusticl)
-    VDPAU_DRIVER = "radeonsi";
-    LIBVA_DRIVER_NAME = "radeonsi";
+    RUSTICL_ENABLE = "radeonsi"; # Use Mesa OpenCL
+    VDPAU_DRIVER = "radeonsi";    # Use Mesa VDPAU driver
+    LIBVA_DRIVER_NAME = "radeonsi"; # Use Mesa VA-API driver
 
     # Explicitly tell the Vulkan loader to only use the RADV driver (64-bit and 32-bit).
     VK_ICD_FILENAMES = lib.concatStringsSep ":" [
-      "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
-      "${pkgs.driversi686Linux.mesa}/share/vulkan/icd.d/radeon_icd.i686.json"
+      "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json" # Mesa RADV 64-bit
+      "${pkgs.driversi686Linux.mesa}/share/vulkan/icd.d/radeon_icd.i686.json" # Mesa RADV 32-bit
     ];
 
     # Explicitly tell GLVND where to find EGL vendor libraries (64-bit and 32-bit).
     __EGL_VENDOR_LIBRARY_FILENAMES = lib.concatStringsSep ":" [
-      "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json"
-      "${pkgs.driversi686Linux.mesa}/share/glvnd/egl_vendor.d/50_mesa.json"
+      "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json" # Mesa EGL 64-bit
+      "${pkgs.driversi686Linux.mesa}/share/glvnd/egl_vendor.d/50_mesa.json" # Mesa EGL 32-bit
     ];
   };
 }
