@@ -68,4 +68,11 @@ in
       "${pkgs.driversi686Linux.mesa}/share/glvnd/egl_vendor.d/50_mesa.json" # Mesa EGL 32-bit
     ];
   };
+
+
+  # --- Ananicy Support ---
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-rules-cachyos;
+  };
 }

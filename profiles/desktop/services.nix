@@ -20,7 +20,4 @@
       dates = "weekly";
     };
   };
-
-  # Enable gamemode for performance optimizations during gaming
-  programs.gamemode.enable = true;
 }

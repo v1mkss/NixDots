@@ -50,7 +50,7 @@
         }
         {
           type = "memory";
-          key = "OS";
+          key = "RAM";
           keyColor = "33";
         }
         {
