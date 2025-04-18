@@ -3,23 +3,23 @@
 let
   # Catppuccin Mocha Blue
   ctp = {
-  # Акценти
-  rosewater = "#e6cbc7"; # Трохи менш насичений рожевий
-  mauve     = "#c9aee8"; # Трохи менш насичений бузковий
-  red       = "#e28ca5"; # Трохи менш насичений червоний
-  yellow    = "#e8d1ad"; # Трохи менш насичений жовтий
-  green     = "#a1cca0"; # Трохи менш насичений зелений
-  teal      = "#92ccc3"; # Трохи менш насичений бірюзовий
-  blue      = "#7796d0"; # Менш яскравий синій (на основі вашого #6a95d7)
+  # Accents
+  rosewater = "#e6cbc7";  # Mocha Rosewater
+  mauve     = "#c9aee8";  # Mocha Mauve
+  red       = "#e28ca5"; # Mocha Red
+  yellow    = "#e8d1ad"; # Mocha Yellow
+  green     = "#a1cca0"; # Mocha Green
+  teal      = "#92ccc3";  # Mocha Teal
+  blue      = "#7796d0"; # Mocha Blue
 
-  # Текст
-  text      = "#bcc4e4"; # Оригінальний текст
-  subtext1  = "#aab4d4"; # Оригінальний підтекст 1
+  # Text
+  text      = "#bcc4e4"; # Mocha Text
+  subtext1  = "#aab4d4"; # Mocha Subtext1
 
-  # Фонові кольори
-  surface2  = "#3d3f52"; # Оригінальна поверхня 2
-  surface1  = "#2a2b3c"; # Оригінальна поверхня 1
-  base      = "#1a1a2a"; # Оригінальна база
+  # Background colors
+  surface2  = "#3d3f52"; # Mocha Subtext2
+  surface1  = "#2a2b3c"; # Mocha Subtext1
+  base      = "#1a1a2a"; # Mocha Base
   };
 in
 {
