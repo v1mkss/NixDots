@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     distrobox
     podman-compose
+    runc
   ];
 
   # Configure container settings
@@ -13,8 +14,9 @@
     [containers]
     netns = "bridge"
     userns = "host"
-    
+
     [engine]
+    runtime = "runc"
     cgroup_manager = "systemd"
     events_logger = "file"
   '';
@@ -24,7 +26,7 @@
     driver = "overlay"
     graphroot = "/home/v1mkss/.local/share/containers/storage"
     runroot = "/home/v1mkss/.local/share/containers/storage/run"
-    
+
     [storage.options.overlay]
     mount_program = "${pkgs.fuse-overlayfs}/bin/fuse-overlayfs"
     mountopt = "nodev"
