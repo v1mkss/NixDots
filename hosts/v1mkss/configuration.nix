@@ -44,7 +44,6 @@ in
       enable = true;
       enableSSHSupport = true;
     };
-    nix-ld.enable = true;
   };
 
   # Security settings

@@ -18,7 +18,16 @@
     nil
     nixd
     nixfmt-rfc-style
-
-    openssl_3
   ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      ncurses
+      stdenv.cc.cc.lib
+      zlib
+
+      openssl_3
+    ];
+  };
 }
