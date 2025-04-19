@@ -23,6 +23,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
+      alsa-lib
       ncurses
       stdenv.cc.cc.lib
       zlib
