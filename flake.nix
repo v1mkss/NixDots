@@ -8,25 +8,55 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
-        url = "github:0xc000022070/zen-browser-flake";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
     let
-      # Function to generate a NixOS configuration for a given host
-      mkNixosSystem = { hostname, username ? hostname, system ? "x86_64-linux", desktopEnv ? "kde", nixstateVersion ? "25.05" }:
-        nixpkgs.lib.nixosSystem {
+      lib = nixpkgs.lib;
+
+      # Define parameters for each host configuration
+      hostDefinitions = {
+        installer = {
+          hostname = "LiveISO";
+          username = "LiveISO";
+          system = "x86_64-linux";
+        };
+        default = {
+          hostname = "v1mkss";
+          username = "v1mkss";
+          system = "x86_64-linux";
+        };
+      };
+
+      mkNixosSystem =
+        configName:
+        {
+          hostname,
+          username ? hostname,
+          system ? "x86_64-linux",
+          nixstateVersion ? "25.05",
+          ...
+        }:
+        lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs hostname username desktopEnv nixstateVersion;
+            inherit
+              inputs
+              hostname
+              username
+              nixstateVersion
+              configName
+              ;
           };
           modules = [
-            # Import host-specific configuration
-            ./hosts/${hostname}/configuration.nix
+            # Import host-specific system configuration
+            ./hosts/${configName}/configuration.nix
 
-            # Import home-manager module
+            # Import the home-manager module
             home-manager.nixosModules.home-manager
             {
               # Global Nixpkgs settings
@@ -44,22 +74,24 @@
                 useUserPackages = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = {
-                   inherit inputs hostname username desktopEnv nixstateVersion;
+                  inherit
+                    inputs
+                    hostname
+                    username
+                    nixstateVersion
+                    configName
+                    ;
                 };
-                # Configure the user specified for this host
-                users.${username} = import ./hosts/${hostname}/home.nix;
+                # Configure the user for this host
+                users.${username} = import ./hosts/${configName}/home.nix;
               };
             }
           ];
         };
 
-      # Define hosts and their configurations
-      hostConfigurations = {
-        # Default user for v1mkss host
-        v1mkss = mkNixosSystem { hostname = "v1mkss"; username = "v1mkss"; desktopEnv = "kde"; };
-      };
     in
-  {
-      nixosConfigurations = hostConfigurations;
-  };
+    {
+      # Generate nixosConfigurations by applying mkNixosSystem to each entry in hostDefinitions
+      nixosConfigurations = lib.mapAttrs mkNixosSystem hostDefinitions;
+    };
 }

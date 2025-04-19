@@ -53,7 +53,7 @@ in
   # Environment variables for graphics
   environment.variables = {
     RUSTICL_ENABLE = "radeonsi"; # Use Mesa OpenCL
-    VDPAU_DRIVER = "radeonsi";    # Use Mesa VDPAU driver
+    VDPAU_DRIVER = "radeonsi"; # Use Mesa VDPAU driver
     LIBVA_DRIVER_NAME = "radeonsi"; # Use Mesa VA-API driver
 
     # Explicitly tell the Vulkan loader to only use the RADV driver (64-bit and 32-bit).
@@ -68,7 +68,6 @@ in
       "${pkgs.driversi686Linux.mesa}/share/glvnd/egl_vendor.d/50_mesa.json" # Mesa EGL 32-bit
     ];
   };
-
 
   # --- Ananicy Support ---
   services.ananicy = {

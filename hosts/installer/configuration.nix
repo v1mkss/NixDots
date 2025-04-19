@@ -9,22 +9,18 @@
 let
   userConfig = {
     isNormalUser = true;
-    description = "Volodia Kraplich";
+    description = "LiveISO";
     extraGroups = [
       "wheel"
       "networkmanager"
-      "video"
-      "audio"
-      "adbusers"
     ];
+    initialPassword = "";
     shell = pkgs.fish;
   };
 in
 {
   imports = [
-    ../../profiles/core
-    ../../profiles/desktop
-    ../hardware-configuration.nix
+    ../../modules/core
   ];
 
   # Networking configuration
@@ -32,25 +28,19 @@ in
 
   # User configuration
   users = {
-    mutableUsers = true;
+    mutableUsers = false;
     users.${username} = userConfig;
   };
 
   # Program configurations
-  programs = {
-    adb.enable = true;
-    fish.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-  };
+  programs.fish.enable = true;
 
   # Security settings
-  security.sudo.wheelNeedsPassword = true;
-  nix.settings.trusted-users = [ "@wheel" ];
+  security.sudo.wheelNeedsPassword = false;
 
   # System settings
-  time.timeZone = "Europe/Kyiv";
+  services.chrony.enable = true; # For time synchronization
+  time.timeZone = "UTC";
+
   system.stateVersion = nixstateVersion;
 }

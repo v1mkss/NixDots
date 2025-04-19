@@ -1,32 +1,16 @@
 {
-  lib,
   pkgs,
-  desktopEnv,
   ...
 }:
 let
-  # --- Variable for selecting the DE ---
-  desktopEnvironment = desktopEnv;
-
-  # --- GNOME specific packages ---
-  gnomePackages = with pkgs; [
-    papirus-icon-theme # Icon theme
-
-    gnome-tweaks # GNOME tweaking tool
-    gnome-extension-manager # Extension manager
-  ];
-
   # --- KDE specific packages ---
   kdePackages = with pkgs; [
-    papirus-icon-theme # Icon theme
+    whitesur-icon-theme # Icon theme
 
     # KDE Integration and Utilities
     pkgs.kdePackages.sddm-kcm # SDDM configuration
     pkgs.kdePackages.powerdevil # KDE power management
     # pkgs.kdePackages.kdialog # File dialogs for non-KDE apps
-
-    # Add tlpui for a graphical interface to TLP if desired
-    # tlpui
   ];
 
   # --- Packages to exclude globally ---
@@ -34,142 +18,97 @@ let
     nixos-render-docs
   ];
 
-  # --- Packages to exclude from GNOME ---
-  gnomeExcludePackages = with pkgs; [
-    atomix
-    epiphany
-    geary
-    gedit
-    gnome-characters
-    gnome-connections
-    gnome-contacts
-    gnome-maps
-    gnome-music
-    gnome-photos
-    gnome-terminal
-    gnome-text-editor
-    gnome-tour
-    gnome-weather
-    hitori
-    iagno
-    seahorse
-    totem
-    yelp
-  ]; # ++ (with pkgs.gnome; []);
-
   # --- Packages to exclude from KDE ---
   kdeExcludePackages = with pkgs.kdePackages; [
-    baloo
-    elisa
-    kate
-    khelpcenter
-    konsole
-    xwaylandvideobridge
+    baloo # Disable file indexing if not needed
+    elisa # KDE music player
+    kate # KDE text editor
+    khelpcenter # KDE help center
+    konsole # KDE terminal emulator
+    xwaylandvideobridge # Component for screen recording in XWayland, might be unnecessary
   ];
 
 in
 {
-  config = lib.mkMerge [
-    # --- Basic X-server/Wayland settings ---
-    {
-      services.xserver.enable = true;
-      services.xserver.excludePackages = with pkgs; [ xterm ];
-      environment.sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-        ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      };
-    }
+  # --- Basic X-server/Wayland settings ---
+  services.xserver = {
+    enable = true;
+    excludePackages = with pkgs; [ xterm ];
+  };
 
-    # --- Configuration for GNOME ---
-    (lib.mkIf (desktopEnvironment == "gnome") {
-      services.xserver = {
-        displayManager.gdm.enable = true;
-        displayManager.gdm.wayland = true;
-        desktopManager.gnome.enable = true;
-      };
-      environment.systemPackages = gnomePackages;
-      environment.gnome.excludePackages = gnomeExcludePackages ++ globalExcludePackages;
-      # services.gnome.core-utilities.enable = true; # Enables basic utilities, might be useful
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  };
 
-      # Power management for GNOME
-      services.power-profiles-daemon.enable = true;
-      services.tlp.enable = false;
-      services.upower.enable = false;
-    })
+  # --- Configuration for KDE Plasma ---
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
-    # --- Configuration for KDE Plasma ---
-    (lib.mkIf (desktopEnvironment == "kde") {
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-      services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true; # Enable KDE Plasma 6
 
-      environment.systemPackages = kdePackages;
-      environment.plasma6.excludePackages = kdeExcludePackages ++ globalExcludePackages;
+  environment.systemPackages = kdePackages; # Add KDE specific packages
+  # Exclude unwanted packages from the default Plasma 6 installation and global excludes
+  environment.plasma6.excludePackages = kdeExcludePackages ++ globalExcludePackages;
 
-      # Power management for KDE
-      services.power-profiles-daemon.enable = true;
-      services.tlp = {
-        enable = false;
-        settings = {
-          # --- General ---
-          TLP_ENABLE = 1;
-          # Set to 0 to disable TLP temporarily
-          TLP_DEFAULT_MODE = "AC";
+  # Power management for KDE
+  services.power-profiles-daemon.enable = true;
 
-          # --- Battery Charge Thresholds ---
-          START_CHARGE_THRESH_BAT0 = 85;
-          STOP_CHARGE_THRESH_BAT0 = 91;
+  # TLP settings (if you decide to use it instead of/in addition to power-profiles-daemon)
+  # Note: power-profiles-daemon and TLP can conflict.
+  # It's usually recommended to use ONLY ONE of them.
+  # If power-profiles-daemon.enable = true, it's better to disable TLP (enable = false).
+  # If you want to use TLP, set power-profiles-daemon.enable = false;
+  services.tlp = {
+    enable = false;
+    settings = {
+      # --- General ---
+      TLP_ENABLE = 1;
+      TLP_DEFAULT_MODE = "AC";
 
+      # --- Battery Charge Thresholds (check compatibility with your laptop!) ---
+      START_CHARGE_THRESH_BAT0 = 85;
+      STOP_CHARGE_THRESH_BAT0 = 91;
 
-          # --- CPU Performance Scaling ---
-          CPU_SCALING_GOVERNOR_ON_AC = "performance";
-          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      # --- CPU Performance Scaling ---
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-          CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-          CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power"; # or "balance_power" or "power"
 
-          # --- CPU Boosting ---
-          # Disable boost on battery to save power
-          CPU_BOOST_ON_AC = 1;
-          CPU_BOOST_ON_BAT = 0;
-          # SCHED_POWERSAVE_ON_AC = 0; # Less aggressive scheduling on AC (default for performance governor)
-          # SCHED_POWERSAVE_ON_BAT = 1; # More aggressive scheduling on BAT (default for powersave governor)
+      # --- CPU Boosting ---
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0; # Disable boost on battery to save power
+      # SCHED_POWERSAVE_ON_BAT = 1; # More aggressive scheduling for power saving
 
+      # --- Graphics (example for Radeon, adapt for Intel/Nvidia) ---
+      RADEON_POWER_PROFILE_ON_AC = "high";
+      RADEON_POWER_PROFILE_ON_BAT = "low";
+      RADEON_DPM_PERF_LEVEL_ON_AC = "high";
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
 
-          # --- Graphics ---
-          RADEON_POWER_PROFILE_ON_AC = "high"; # Prioritize performance on AC
-          RADEON_POWER_PROFILE_ON_BAT = "low";  # Prioritize battery saving on BAT
+      # --- WiFi Power Saving ---
+      WIFI_PWR_ON_AC = "off";
+      WIFI_PWR_ON_BAT = "on";
 
-          # Controls the dynamic power management performance level hint.
-          RADEON_DPM_PERF_LEVEL_ON_AC = "high"; # Use high performance state on AC ('auto' is safer)
-          RADEON_DPM_PERF_LEVEL_ON_BAT = "low"; # Use low power state on BAT ('auto' is safer)
+      # --- Audio Power Saving ---
+      SOUND_POWER_SAVE_ON_AC = 0;
+      SOUND_POWER_SAVE_ON_BAT = 1;
+      SOUND_POWER_SAVE_CONTROLLER = "Y";
 
-          # --- WiFi Power Saving ---
-          WIFI_PWR_ON_AC = "off"; # Disable power saving on AC
-          WIFI_PWR_ON_BAT = "on"; # Enable power saving on BAT
+      # --- USB Autosuspend ---
+      USB_AUTOSUSPEND = 1;
+      USB_AUTOSUSPEND_ON_AC = 0; # Disable on AC for better compatibility
+      USB_AUTOSUSPEND_ON_BAT = 1; # Enable on battery for power saving
+      # USB_BLACKLIST="1234:5678"; # Add IDs of devices that don't work with autosuspend
 
-          # --- Audio Power Saving ---
-          SOUND_POWER_SAVE_ON_AC = 0; # Disable on AC
-          SOUND_POWER_SAVE_ON_BAT = 1; # Enable on BAT
-          SOUND_POWER_SAVE_CONTROLLER = "Y"; # Automatically enable controller power save
-
-          # --- USB ---
-          # Disable USB autosuspend on AC for device compatibility/performance
-          USB_AUTOSUSPEND = 1; # Master switch for USB autosuspend feature
-          USB_AUTOSUSPEND_ON_AC = 0; # Disable autosuspend when on AC power
-          USB_AUTOSUSPEND_ON_BAT = 1; # Enable autosuspend when on battery power
-          # You might need to blacklist specific devices if they misbehave with autosuspend:
-          # USB_BLACKLIST="1234:5678 ..."
-
-          # --- PCIe Runtime Power Management ---
-          # RUNTIME_PM_ON_AC = "auto"; # Allow PCIe devices to sleep on AC if idle
-          # RUNTIME_PM_ON_BAT = "auto"; # Allow PCIe devices to sleep on battery
-          # Runtime PM Blacklist if needed for specific devices:
-          # RUNTIME_PM_BLACKLIST="01:00.0 02:00.0" # Example PCI IDs (find with lspci)
-        };
-      };
-    })
-  ];
+      # --- PCIe Runtime Power Management ---
+      # RUNTIME_PM_ON_AC = "auto";
+      # RUNTIME_PM_ON_BAT = "auto";
+      # RUNTIME_PM_BLACKLIST="01:00.0"; # Example PCI ID
+    };
+  };
 }

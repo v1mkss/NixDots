@@ -34,7 +34,7 @@
 
     # Define convenient shell aliases
     shellAliases = {
-      # System Maintenance (Note: 'sudo' requires root privileges)
+      # System Maintenance
       # Consider NixOS auto garbage collection instead for system cleanup
       cleanup = "nix-collect-garbage --delete-old; sudo nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
       optimize = "echo Nix-Store Optimization... Please wait; sudo nix-store --optimize";
