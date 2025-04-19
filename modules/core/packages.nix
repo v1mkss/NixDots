@@ -14,11 +14,21 @@
     pciutils # lspci
     usbutils # lsusb
 
-    # Additional tools
+    # Nix Language Server
     nil
     nixd
     nixfmt-rfc-style
-
-    openssl
   ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      alsa-lib
+      ncurses
+      stdenv.cc.cc.lib
+      zlib
+
+      openssl_3
+    ];
+  };
 }

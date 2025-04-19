@@ -1,7 +1,6 @@
-{ ... }:
 {
   imports = [
+    ./fastfetch.nix
     ./fish.nix
-    ./git.nix
   ];
 }

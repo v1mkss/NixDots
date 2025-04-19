@@ -1,8 +1,29 @@
-{ pkgs, username, hostname, ... }:
+{
+  pkgs,
+  username,
+  hostname,
+  nixstateVersion,
+  ...
+}:
 
+let
+  userConfig = {
+    isNormalUser = true;
+    description = "Volodia Kraplich";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "adbusers"
+      "corectrl"
+    ];
+    shell = pkgs.fish;
+  };
+in
 {
   imports = [
-    ../../profiles/core
+    ../../modules/core
     ../../profiles/desktop
     ../hardware-configuration.nix
   ];
@@ -13,18 +34,7 @@
   # User configuration
   users = {
     mutableUsers = true;
-    users.${username} = {
-      isNormalUser = true;
-      description = "Volodia Kraplich";
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-        "video"
-        "audio"
-        "adbusers"
-      ];
-      shell = pkgs.fish;
-    };
+    users.${username} = userConfig;
   };
 
   # Program configurations
@@ -35,13 +45,15 @@
       enable = true;
       enableSSHSupport = true;
     };
-    nix-ld.enable = true;
   };
 
   # Security settings
   security.sudo.wheelNeedsPassword = true;
+  nix.settings.trusted-users = [ "@wheel" ];
 
   # System settings
+  services.chrony.enable = true; # For time synchronization
   time.timeZone = "Europe/Kyiv";
-  system.stateVersion = "25.05";
+
+  system.stateVersion = nixstateVersion;
 }

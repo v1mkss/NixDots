@@ -1,16 +1,22 @@
 {
   username,
+  nixstateVersion,
   ...
 }:
 {
   imports = [
-    ../../profiles/desktop/home
+    ../../modules/core/configs
+    ../../modules/desktop
   ];
 
   home = {
     username = username;
     homeDirectory = "/home/${username}";
-    stateVersion = "25.05";
+    stateVersion = nixstateVersion;
+
+
+    # nix-shell configuration
+    file.".config/nixpkgs/config.nix".text = ''{ allowUnfree = true; }'';
   };
 
   programs = {
@@ -22,7 +28,7 @@
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {
-        key = "3325BAABB555B6DF";
+        key = "8FE091CB442751E8";
         signByDefault = true;
       };
     };

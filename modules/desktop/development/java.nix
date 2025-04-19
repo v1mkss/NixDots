@@ -1,13 +1,11 @@
 { pkgs, ... }:
 {
-  # Essential Java Development Kit
   home.packages = with pkgs; [
-    jdk21
-
+    zulu21
     gradle
   ];
 
   home.sessionVariables = {
-    JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
+    JAVA_HOME = "${pkgs.zulu21}";
   };
 }

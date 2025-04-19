@@ -6,8 +6,18 @@
 
     # Support for video driver
     xserver.videoDrivers = [ "amdgpu" ];
+  };
 
-    # udev rules for Android devices
-    udev.packages = [ pkgs.android-udev-rules ];
+  # Enable Podman
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+    dockerSocket.enable = true;
+    extraPackages = with pkgs; [ fuse-overlayfs ];
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+    };
   };
 }
