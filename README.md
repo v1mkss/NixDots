@@ -6,18 +6,19 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 
 ### 🖥️ System
 
-- **Desktop Environment**: Choice between GNOME or KDE Plasma 6
-- **Hardware Support**: Optimized for AMD CPU/GPU
+- **Desktop Environment**: KDE Plasma 6
+- **Hardware Support**: Optimized for AMD CPU/IGPU/GPU
 - **Audio**: PipeWire audio system
 - **Fonts**: Cascadia Code as default font family
 
 ### 🛠️ Development Environment
 
 - **IDEs & Editors**:
+  - VS Code
   - Zed Editor
   - Godot 4.4
 - **Languages & Runtimes**:
-  - Java (8, 11, 17, 21) with version switcher
+  - Java 21
   - Rust toolchain with cargo
   - Bun JavaScript runtime
 - **Build Tools**: CMake, GCC, Make, pkg-config
@@ -30,7 +31,6 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
-  - DaVinci Resolve (To install, uncomment `davinci-resolve.nix` in [profiles/desktop/home/packages.nix](https://github.com/v1mkss/NixDots/blob/update/profiles/desktop/home/pkgs/default.nix)
   - EasyEffects
   - MPV Player
   - YouTube Music
@@ -57,17 +57,17 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 
 ## 🚀 Installation
 
-1. Clone the repository:
+1.  Clone the repository:
 
-```bash
-git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
-```
+    ```bash
+    git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
+    ```
 
-2. Run the installation script:
+2.  Run the installation script:
 
-```bash
-sh ./install.sh
-```
+    ```bash
+    sh ./install.sh
+    ```
 
 ## 🔧 Useful Commands
 

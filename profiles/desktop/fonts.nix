@@ -5,7 +5,6 @@
       cascadia-code
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-color-emoji
       roboto
 
       nerd-fonts.symbols-only
@@ -26,7 +25,7 @@
     };
 
     # Enable font support
-    enableDefaultPackages = false;
+    enableDefaultPackages = true;
     fontDir.enable = true;
   };
 }

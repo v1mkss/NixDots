@@ -13,5 +13,14 @@
     clinfo # Check OpenCL
     glxinfo # Check OpenGL
     libva-utils # vainfo
+    corectrl # GPU control utility
   ];
+
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock = {
+      enable = true;
+      ppfeaturemask = "0xffffffff";
+    };
+  };
 }

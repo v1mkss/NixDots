@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   # Install container management tools
   home.packages = with pkgs; [
     distrobox

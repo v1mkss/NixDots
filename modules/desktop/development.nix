@@ -3,16 +3,16 @@
 let
   # --- General Purpose Development Tools ---
   developmentTools = with pkgs; [
-    vscode-fhs     # Visual Studio Code
+    vscode-fhs # Visual Studio Code
     zed-editor-fhs # Zed Editor
-    godot_4        # Game development engine
-    lazygit        # Terminal UI for git
+    godot_4 # Game development engine
+    lazygit # Terminal UI for git
   ];
 
   # --- Runtimes and SDKs ---
   runtimesAndSDKs = with pkgs; [
-    bun            # Fast JavaScript runtime/toolkit
-    dart           # Dart SDK
+    bun # Fast JavaScript runtime/toolkit
+    dart # Dart SDK
   ];
 
   # --- C/C++ Toolchain ---
@@ -21,20 +21,20 @@ let
   # C/C++ Build and Development Tools
   buildTools = with pkgs; [
     # Core Clang Toolset
-    llvm.clang       # Clang C/C++ Compiler
-    llvm.lld         # LLVM's Linker
+    llvm.clang # Clang C/C++ Compiler
+    llvm.lld # LLVM's Linker
     llvm.clang-tools
-    llvm.lldb        # LLVM's Debugger
+    llvm.lldb # LLVM's Debugger
 
     # GCC Toolchain (still useful, especially GDB)
-    gdb              # GNU Debugger (can debug Clang-compiled code)
+    gdb # GNU Debugger (can debug Clang-compiled code)
 
     # Build Systems & Helpers
-    cmake            # Cross-platform build system generator
-    meson            # Modern, fast build system (works well with Ninja)
-    ninja            # Very fast build system backend
-    gnumake          # Standard Make utility
-    pkg-config       # Utility to retrieve metadata about installed libraries
+    cmake # Cross-platform build system generator
+    meson # Modern, fast build system (works well with Ninja)
+    ninja # Very fast build system backend
+    gnumake # Standard Make utility
+    pkg-config # Utility to retrieve metadata about installed libraries
   ];
 
 in

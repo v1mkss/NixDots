@@ -16,6 +16,7 @@ let
       "video"
       "audio"
       "adbusers"
+      "corectrl"
     ];
     shell = pkgs.fish;
   };
