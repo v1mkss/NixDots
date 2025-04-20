@@ -5,7 +5,6 @@ let
   developmentTools = with pkgs; [
     vscode-fhs # Visual Studio Code
     zed-editor-fhs # Zed Editor
-    godot_4 # Game development engine
     lazygit # Terminal UI for git
   ];
 
