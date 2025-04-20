@@ -21,6 +21,7 @@ in
 {
   imports = [
     ../../modules/core
+    ../../profiles/installer
   ];
 
   # Networking configuration
