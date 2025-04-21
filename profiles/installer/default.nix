@@ -12,8 +12,6 @@
     vulkan-tools # vkinfo, vkcube
     clinfo # Check OpenCL
     glxinfo # Check OpenGL
-    libva-utils # vainfo
-    corectrl # GPU control utility
   ];
 
   programs.corectrl = {
