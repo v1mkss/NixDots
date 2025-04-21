@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./configs
+    ./packages.nix
+  ];
+}
