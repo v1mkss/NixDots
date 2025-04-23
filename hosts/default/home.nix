@@ -24,11 +24,11 @@
 
     git = {
       # Basic configuration
-      userName = "Volodia Kraplich";
+      userName = "Kraplich Volodia";
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {
-        key = "8FE091CB442751E8";
+        key = "7C3F49C8042B171E";
         signByDefault = true;
       };
     };

@@ -9,7 +9,7 @@
 let
   userConfig = {
     isNormalUser = true;
-    description = "Volodia Kraplich";
+    description = "Kraplich Volodia";
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -49,7 +49,7 @@ in
 
   # Security settings
   security.sudo.wheelNeedsPassword = true;
-  nix.settings.trusted-users = [ "@wheel" ];
+  nix.settings.trusted-users = [ username ];
 
   # System settings
   services.chrony.enable = true; # For time synchronization

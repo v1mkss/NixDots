@@ -13,12 +13,4 @@
     clinfo # Check OpenCL
     glxinfo # Check OpenGL
   ];
-
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock = {
-      enable = true;
-      ppfeaturemask = "0xffffffff";
-    };
-  };
 }

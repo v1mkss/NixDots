@@ -10,7 +10,7 @@
 
   # Enable Podman
   virtualisation.podman = {
-    enable = true;
+    enable = false;
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
     dockerSocket.enable = true;

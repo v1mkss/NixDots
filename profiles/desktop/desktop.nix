@@ -6,10 +6,6 @@ let
   # --- KDE specific packages ---
   kdePackages = with pkgs; [
     whitesur-icon-theme # Icon theme
-
-    # KDE Integration and Utilities
-    pkgs.kdePackages.sddm-kcm # SDDM configuration
-    pkgs.kdePackages.powerdevil # KDE power management
     # pkgs.kdePackages.kdialog # File dialogs for non-KDE apps
   ];
 
@@ -25,7 +21,12 @@ let
     kate # KDE text editor
     khelpcenter # KDE help center
     konsole # KDE terminal emulator
-    xwaylandvideobridge # Component for screen recording in XWayland, might be unnecessary
+    xwaylandvideobridge # Component for screen recording in XWayland
+    discover # Software center
+    drkonqi # Crash handler
+    oxygen # Old theme
+    breeze-gtk # GTK тема
+    kdeconnect-kde # KDE Connect
   ];
 
 in
@@ -34,11 +35,6 @@ in
   services.xserver = {
     enable = true;
     excludePackages = with pkgs; [ xterm ];
-  };
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
   # --- Configuration for KDE Plasma ---
@@ -57,12 +53,8 @@ in
   services.power-profiles-daemon.enable = true;
 
   # TLP settings (if you decide to use it instead of/in addition to power-profiles-daemon)
-  # Note: power-profiles-daemon and TLP can conflict.
-  # It's usually recommended to use ONLY ONE of them.
-  # If power-profiles-daemon.enable = true, it's better to disable TLP (enable = false).
-  # If you want to use TLP, set power-profiles-daemon.enable = false;
   services.tlp = {
-    enable = false;
+    enable = false; # Увімкнено TLP для кращого енергозбереження
     settings = {
       # --- General ---
       TLP_ENABLE = 1;
@@ -111,4 +103,9 @@ in
       # RUNTIME_PM_BLACKLIST="01:00.0"; # Example PCI ID
     };
   };
+
+  # Для вимкнення анімацій та композитора: вручну додайте у ~/.config/kwinrc:
+  # [Compositing]
+  # Enabled=false
+  # або через System Settings > Display > Compositor
 }
