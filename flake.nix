@@ -93,5 +93,9 @@
     {
       # Generate nixosConfigurations by applying mkNixosSystem to each entry in hostDefinitions
       nixosConfigurations = lib.mapAttrs mkNixosSystem hostDefinitions;
+
+      devShells = lib.genAttrs ["x86_64-linux"] (system: {
+        default = import ./nix/develop.nix { pkgs = import nixpkgs { inherit system; }; };
+      });
     };
 }

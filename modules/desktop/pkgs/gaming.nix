@@ -4,6 +4,7 @@
     # Steam core
     steam
     steam-run
+    lutris
 
     # Wine and compatibility tools
     protontricks
