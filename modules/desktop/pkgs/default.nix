@@ -1,7 +1,7 @@
 {
-  imports = [
-    #./containers.nix
-    # ./davinci-resolve.nix # Davinci Resolve Studio
-    ./gaming.nix
-  ];
+imports = [
+  #./containers.nix
+  # ./davinci-resolve.nix # Davinci Resolve Studio
+  ./gaming.nix
+];
 }

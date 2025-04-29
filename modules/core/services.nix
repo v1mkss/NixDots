@@ -5,6 +5,9 @@
     # Periodic SSD trim
     fstrim.enable = true;
 
+    # Enable fwupd for firmware updates
+    fwupd.enable = true;
+
     # Smart card service
     pcscd.enable = true;
 

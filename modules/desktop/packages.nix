@@ -1,27 +1,27 @@
 {
-  pkgs,
-  inputs,
-  ...
+pkgs,
+inputs,
+...
 }:
 {
-  imports = [ ./pkgs ];
+imports = [ ./pkgs ];
 
-  home.packages = with pkgs; [
-    # Media
-    easyeffects
-    mpv
-    youtube-music
-    yt-dlp
+home.packages = with pkgs; [
+  # Media
+  easyeffects
+  mpv
+  youtube-music
+  yt-dlp
 
-    # Internet
-    inputs.zen-browser.packages."${system}".default
-    telegram-desktop
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+  # Internet
+  inputs.zen-browser.packages."${system}".default
+  telegram-desktop
+  (discord.override {
+    withOpenASAR = true;
+    withVencord = true;
+  })
 
-    # Office
-    libreoffice-qt6-fresh
-  ];
+  # Office
+  libreoffice-qt6-fresh
+];
 }

@@ -24,7 +24,7 @@
 
     git = {
       # Basic configuration
-      userName = "Kraplich Volodia";
+      userName = "Volodia Kraplich";
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {

@@ -9,14 +9,13 @@
 let
   userConfig = {
     isNormalUser = true;
-    description = "Kraplich Volodia";
+    description = "Volodia Kraplich";
     extraGroups = [
       "wheel"
       "networkmanager"
       "video"
       "audio"
       "adbusers"
-      "corectrl"
     ];
     shell = pkgs.fish;
   };

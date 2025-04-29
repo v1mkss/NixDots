@@ -10,7 +10,6 @@
     kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "zswap.enabled=1" # Enable zswap
-      "amdgpu.ppfeaturemask=0xffffffff" # AMD GPU power management
     ];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "amdgpu" ];
