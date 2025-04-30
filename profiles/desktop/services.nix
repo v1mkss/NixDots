@@ -21,7 +21,6 @@
     };
   };
 
-
   # Better Gamnig Support
   programs.gamemode.enable = true;
 }

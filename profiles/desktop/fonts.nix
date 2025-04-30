@@ -15,7 +15,10 @@
         monospace = [ "Cascadia Mono" ];
         sansSerif = [ "Cascadia Code" ];
         serif = [ "Cascadia Code" ];
-        emoji = [ "Noto Color Emoji" "Symbols Nerd Font"];
+        emoji = [
+          "Noto Color Emoji"
+          "Symbols Nerd Font"
+        ];
       };
 
       antialias = true;

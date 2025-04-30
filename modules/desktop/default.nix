@@ -1,7 +1,7 @@
 {
-imports = [
-  ./configs
-  ./development.nix
-  ./packages.nix
-];
+  imports = [
+    ./configs
+    ./development.nix
+    ./packages.nix
+  ];
 }

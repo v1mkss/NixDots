@@ -26,6 +26,7 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
+  - Audacious
   - EasyEffects
   - MPV Player
   - YouTube Music
@@ -34,9 +35,8 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 - **Gaming**:
   - Steam
   - Lutris
-  - Proton Compatibility Layer
-  - Protontricks
-  - Wine Staging
+  - ProtonPlus/Proton/etc
+  - Wine
 
 ### 🐟 Shell Environment
 
@@ -53,15 +53,15 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 
 1.  Clone the repository:
 
-    ```bash
-    git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
-    ```
+```bash
+git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
+```
 
 2.  Run the installation script:
 
-    ```bash
-    sh ./install.sh
-    ```
+```bash
+sh ./install.sh
+```
 
 ## 🔧 Useful Commands
 
