@@ -13,7 +13,6 @@
     mpv
     youtube-music
     yt-dlp
-    davinci-resolve
 
     # Internet
     inputs.zen-browser.packages."${system}".default

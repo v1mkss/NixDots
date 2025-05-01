@@ -20,11 +20,6 @@
 
       # Define parameters for each host configuration
       hostDefinitions = {
-        installer = {
-          hostname = "LiveISO";
-          username = "LiveISO";
-          system = "x86_64-linux";
-        };
         default = {
           hostname = "v1mkss";
           username = "v1mkss";
