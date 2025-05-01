@@ -35,7 +35,6 @@
     # Define convenient shell aliases
     shellAliases = {
       # System Maintenance
-      # Consider NixOS auto garbage collection instead for system cleanup
       cleanup = "nix-collect-garbage -d; sudo nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
       optimize = "echo Nix-Store Optimization... Please wait; sudo nix-store --optimize";
 
@@ -92,7 +91,7 @@
     };
   };
 
-  # Install essential command-line utilities managed by Home Manager
+  # Install essential command-line utilities managed
   home.packages = with pkgs; [
     # File system navigation & display
     eza # Modern 'ls' replacement

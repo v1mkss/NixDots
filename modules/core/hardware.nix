@@ -53,7 +53,7 @@ in
   environment.variables = {
     RUSTICL_ENABLE = "radeonsi";
     LIBVA_DRIVER_NAME = "radeonsi";
-    VDPAU_DRIVER = "va_gl"; # maps to libvdpau-va-gl
+    VDPAU_DRIVER = "va_gl";
     AMD_VULKAN_ICD = "RADV";
   };
 }

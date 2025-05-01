@@ -24,7 +24,7 @@
       antialias = true;
       hinting.enable = true; # Enable hinting
       hinting.style = "slight"; # Set hint style
-      subpixel.rgba = "rgb"; # Set subpixel rendering order (common for LCDs)
+      subpixel.rgba = "rgb"; # Set subpixel rendering order
     };
 
     # Enable font support
