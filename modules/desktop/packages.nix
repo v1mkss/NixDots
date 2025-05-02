@@ -17,10 +17,7 @@
     # Internet
     inputs.zen-browser.packages."${system}".default
     telegram-desktop
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    vesktop
 
     # Office
     libreoffice-qt6-fresh
