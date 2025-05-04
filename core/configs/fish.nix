@@ -13,7 +13,7 @@
         set -g fish_history ""
       end
 
-      # Minimalistic NixOS-themed command not found handler
+      # Minimalistic Linux-themed command not found handler
       function __fish_command_not_found_handler --on-event fish_command_not_found
         set_color blue
         echo -n "❄ "

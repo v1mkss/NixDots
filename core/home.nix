@@ -1,19 +1,11 @@
-{
-  username,
-  nixstateVersion,
-  ...
-}:
+{ ... }:
 {
   imports = [
-    ../../modules/core/configs
-    ../../modules/desktop
+    ./configs
+    ./pkgs
   ];
 
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
-    stateVersion = nixstateVersion;
-
     # nix-shell configuration
     file.".config/nixpkgs/config.nix".text = ''{ allowUnfree = true; }'';
   };
@@ -25,9 +17,8 @@
       # Basic configuration
       userName = "Volodia Kraplich";
       userEmail = "v1mkss.m+git@gmail.com";
-
       signing = {
-        key = "C6F1A619FDB8766A";
+        key = "3F26710B564F4235";
         signByDefault = true;
       };
     };

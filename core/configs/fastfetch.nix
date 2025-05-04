@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       logo = {
-        source = "nixos_small";
+        source = "fedora_small";
         padding = {
           top = 1;
         };
