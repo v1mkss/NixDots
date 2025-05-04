@@ -35,8 +35,8 @@
     # Define convenient shell aliases
     shellAliases = {
       # System Maintenance
-      cleanup = "nix-collect-garbage -d; sudo nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
-      optimize = "echo Nix-Store Optimization... Please wait; sudo nix-store --optimize";
+      cleanup = "nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
+      optimize = "echo Nix-Store Optimization... Please wait; nix-store --optimize";
 
       # Directory Navigation
       ".." = "cd ..";
