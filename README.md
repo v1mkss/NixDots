@@ -4,16 +4,42 @@ My optimized, minimal Linux setup featuring Home Manager for streamlined develop
 
 ## ⚙️ Core Features
 
-### 🐟 Shell Environment
+### 🐟 Shell Environment (Fish)
 
-- **Fish Shell**:
-  - Modern prompt with git integration
-  - Smart aliases
-- **Modern CLI Tools**:
+- Modern prompt with git integration
+- Smart aliases and functions
+- Command-not-found handler
+- Custom color scheme
+- Directory navigation shortcuts
+- Modern CLI Tools:
   - eza (modern ls)
   - bat (modern cat)
   - fd (modern find)
   - fzf (fuzzy finder)
+
+### 💻 Terminal (Alacritty)
+
+- Custom Catppuccin Mocha theme
+- Cascadia Code font configuration
+- Window opacity and blur effects
+- Optimized scrolling
+- Smart window padding
+
+### 🏃 System Info (Fastfetch)
+
+- Fedora-styled logo
+- Customized system information display
+- Shows OS, kernel, host, packages, uptime, and RAM
+- Minimalist color scheme
+- Clean layout with custom separators
+
+### 🌿 Git Configuration
+
+- Smart default branch settings
+- Custom color scheme for UI elements
+- Global gitignore settings
+- Automatic remote setup
+- GPG signing support
 
 ## 🚀 Installation
 

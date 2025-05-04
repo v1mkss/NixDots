@@ -3,6 +3,7 @@
   imports = [
     ./configs
     ./pkgs
+    ./optimization.nix
   ];
 
   home = {
