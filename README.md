@@ -17,15 +17,15 @@ My optimized, minimal Linux setup featuring Home Manager for streamlined develop
 
 ## 🚀 Installation
 
-1.  Clone the repository:
+1. Clone the repository:
 
 ```bash
 git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
 ```
 
-2.  Install Home Manager:
+2. Install Home Manager:
 
-Follow the [Home Manager installation guide](https://nix-community.github.io/home-manager/).
+Follow the [Home Manager installation guide](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone).
 
 3.  Apply the configuration:
 
