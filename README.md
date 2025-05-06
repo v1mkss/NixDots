@@ -1,96 +1,62 @@
-# 🚀 NixOS Config
+# 🚀 Linux Config
 
-My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamlined development and daily usage.
+My optimized, minimal Linux setup featuring Home Manager for streamlined development and daily usage.
 
 ## ⚙️ Core Features
 
-### 🖥️ System
+### 🐟 Shell Environment (Fish)
 
-- **Desktop Environment**: KDE Plasma 6
-- **Hardware Support**: Optimized for AMD CPU/IGPU/GPU
-- **Audio**: PipeWire audio system
-- **Fonts**: Cascadia Code as default font family
-
-### 🛠️ Development Environment
-
-- **IDEs & Editors**:
-  - VS Code
-  - Zed Editor
-  - Godot 4.4
-- **Languages & Runtimes**:
-  - Java 21
-  - Rust toolchain with cargo
-  - Bun JavaScript runtime
-- **Build Tools**: CMake, GCC, Make, pkg-config
-- **Version Control**: Git with LazyGit
-
-### 📱 Applications
-
-- **Browsers**: Zen Browser
-- **Communication**:
-  - Discord (with OpenASAR/Vencord)
-  - Telegram Desktop
-- **Media**:
-  - EasyEffects
-  - MPV Player
-  - YouTube Music
-  - yt-dlp
-- **Office**: LibreOffice Qt6
-- **Gaming**:
-  - Steam
-  - Proton Compatibility Layer
-  - Protontricks
-  - Wine Staging
-
-### 🐟 Shell Environment
-
-- **Fish Shell**:
-  - Modern prompt with git integration
-  - Smart aliases
-  - Java version management
-  - Path management for Rust/Cargo/Bun
-- **Modern CLI Tools**:
+- Modern prompt with git integration
+- Smart aliases and functions
+- Command-not-found handler
+- Custom color scheme
+- Directory navigation shortcuts
+- Modern CLI Tools:
   - eza (modern ls)
   - bat (modern cat)
   - fd (modern find)
   - fzf (fuzzy finder)
 
+### 💻 Terminal (Alacritty)
+
+- Custom Catppuccin Mocha theme
+- Cascadia Code font configuration
+- Window opacity and blur effects
+- Optimized scrolling
+- Smart window padding
+
+### 🏃 System Info (Fastfetch)
+
+- Fedora-styled logo
+- Customized system information display
+- Shows OS, kernel, host, packages, uptime, and RAM
+- Minimalist color scheme
+- Clean layout with custom separators
+
+### 🌿 Git Configuration
+
+- Smart default branch settings
+- Custom color scheme for UI elements
+- Global gitignore settings
+- Automatic remote setup
+- GPG signing support
+
 ## 🚀 Installation
 
-1.  Clone the repository:
-
-    ```bash
-    git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
-    ```
-
-2.  Run the installation script:
-
-    ```bash
-    sh ./install.sh
-    ```
-
-## 🔧 Useful Commands
-
-### System Management
+1. Clone the repository:
 
 ```bash
-cleanup                 # Clean old system generations
-optimize                # Optimize Nix store (may take time)
+git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
 ```
 
-### Development
+2. Install Home Manager:
+
+Follow the [Home Manager installation guide](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone).
+
+3.  Apply the configuration:
 
 ```bash
-use-java [8|11|17|21]  # Switch Java versions
-mkcd <directory>       # Create and enter directory
-```
-
-### Enhanced CLI Commands
-
-```bash
-ls, l, la            # Enhanced file listing (eza)
-cat <file>           # Enhanced file viewer (bat)
-tree                 # Directory tree view (eza)
+./install.sh
 ```
 
 ## 🤝 Contributing

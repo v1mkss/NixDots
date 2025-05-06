@@ -13,7 +13,7 @@
         set -g fish_history ""
       end
 
-      # Minimalistic NixOS-themed command not found handler
+      # Minimalistic Linux-themed command not found handler
       function __fish_command_not_found_handler --on-event fish_command_not_found
         set_color blue
         echo -n "❄ "
@@ -35,9 +35,8 @@
     # Define convenient shell aliases
     shellAliases = {
       # System Maintenance
-      # Consider NixOS auto garbage collection instead for system cleanup
-      cleanup = "nix-collect-garbage -d; sudo nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
-      optimize = "echo Nix-Store Optimization... Please wait; sudo nix-store --optimize";
+      cleanup = "nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
+      optimize = "echo Nix-Store Optimization... Please wait; nix-store --optimize";
 
       # Directory Navigation
       ".." = "cd ..";
@@ -92,7 +91,7 @@
     };
   };
 
-  # Install essential command-line utilities managed by Home Manager
+  # Install essential command-line utilities managed
   home.packages = with pkgs; [
     # File system navigation & display
     eza # Modern 'ls' replacement
