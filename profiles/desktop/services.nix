@@ -10,7 +10,7 @@
 
   # Enable Podman
   virtualisation.podman = {
-    enable = true;
+    enable = false;
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
     dockerSocket.enable = true;
@@ -20,4 +20,7 @@
       dates = "weekly";
     };
   };
+
+  # Better Gamnig Support
+  programs.gamemode.enable = true;
 }

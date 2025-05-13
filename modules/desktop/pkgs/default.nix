@@ -1,7 +1,7 @@
 {
   imports = [
-    ./containers.nix
-    # ./davinci-resolve.nix # Davinci Resolve Studio
-    ./steam.nix
+    #./containers.nix
+    #./others/davinci-resolve-studio.nix # Davinci Resolve Studio
+    ./gaming.nix
   ];
 }

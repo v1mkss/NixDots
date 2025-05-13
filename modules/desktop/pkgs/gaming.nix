@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    # Steam core
+    # Gaming Core
     steam
-    steam-run
+    lutris
+    inputs.xmcl-nix.packages.${system}.default # Minecraft Launcher
 
     # Wine and compatibility tools
     protontricks
+    protonplus
     winetricks
     wine-staging
     wine64
@@ -16,4 +18,5 @@
     # Disable Steam's update notifications
     STEAM_DISABLE_UPDATES = "1";
   };
+
 }

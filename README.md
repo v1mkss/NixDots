@@ -16,12 +16,7 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 - **IDEs & Editors**:
   - VS Code
   - Zed Editor
-  - Godot 4.4
-- **Languages & Runtimes**:
-  - Java 21
-  - Rust toolchain with cargo
-  - Bun JavaScript runtime
-- **Build Tools**: CMake, GCC, Make, pkg-config
+- **Languages & Runtimes**: Direnv
 - **Version Control**: Git with LazyGit
 
 ### 📱 Applications
@@ -31,6 +26,7 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
   - Discord (with OpenASAR/Vencord)
   - Telegram Desktop
 - **Media**:
+  - Audacious
   - EasyEffects
   - MPV Player
   - YouTube Music
@@ -38,17 +34,15 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 - **Office**: LibreOffice Qt6
 - **Gaming**:
   - Steam
-  - Proton Compatibility Layer
-  - Protontricks
-  - Wine Staging
+  - Lutris
+  - ProtonPlus/Proton/etc
+  - Wine
 
 ### 🐟 Shell Environment
 
 - **Fish Shell**:
   - Modern prompt with git integration
   - Smart aliases
-  - Java version management
-  - Path management for Rust/Cargo/Bun
 - **Modern CLI Tools**:
   - eza (modern ls)
   - bat (modern cat)
@@ -59,15 +53,15 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 
 1.  Clone the repository:
 
-    ```bash
-    git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
-    ```
+```bash
+git clone --depth=1 https://github.com/v1mkss/NixDots.git && cd NixDots
+```
 
 2.  Run the installation script:
 
-    ```bash
-    sh ./install.sh
-    ```
+```bash
+sh ./install.sh
+```
 
 ## 🔧 Useful Commands
 
@@ -78,19 +72,13 @@ cleanup                 # Clean old system generations
 optimize                # Optimize Nix store (may take time)
 ```
 
-### Development
-
-```bash
-use-java [8|11|17|21]  # Switch Java versions
-mkcd <directory>       # Create and enter directory
-```
-
 ### Enhanced CLI Commands
 
 ```bash
 ls, l, la            # Enhanced file listing (eza)
 cat <file>           # Enhanced file viewer (bat)
 tree                 # Directory tree view (eza)
+mkcd <directory>      # Create and enter directory
 ```
 
 ## 🤝 Contributing

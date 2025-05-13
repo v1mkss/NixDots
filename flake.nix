@@ -11,6 +11,10 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xmcl-nix = {
+      url = "github:v1mkss/XMCL-Nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,11 +24,6 @@
 
       # Define parameters for each host configuration
       hostDefinitions = {
-        installer = {
-          hostname = "LiveISO";
-          username = "LiveISO";
-          system = "x86_64-linux";
-        };
         default = {
           hostname = "v1mkss";
           username = "v1mkss";
@@ -93,5 +92,9 @@
     {
       # Generate nixosConfigurations by applying mkNixosSystem to each entry in hostDefinitions
       nixosConfigurations = lib.mapAttrs mkNixosSystem hostDefinitions;
+
+      devShells = lib.genAttrs ["x86_64-linux"] (system: {
+        default = import ./nix/develop.nix { pkgs = import nixpkgs { inherit system; }; };
+      });
     };
 }

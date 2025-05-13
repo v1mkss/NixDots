@@ -16,7 +16,6 @@ let
       "video"
       "audio"
       "adbusers"
-      "corectrl"
     ];
     shell = pkgs.fish;
   };
@@ -49,7 +48,7 @@ in
 
   # Security settings
   security.sudo.wheelNeedsPassword = true;
-  nix.settings.trusted-users = [ "@wheel" ];
+  nix.settings.trusted-users = [ username ];
 
   # System settings
   services.chrony.enable = true; # For time synchronization

@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     # Media
+    audacious
     easyeffects
     mpv
     youtube-music
