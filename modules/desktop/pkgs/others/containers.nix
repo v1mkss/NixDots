@@ -1,5 +1,6 @@
 {
   pkgs,
+  username,
   ...
 }:
 {
@@ -25,8 +26,8 @@
   home.file.".config/containers/storage.conf".text = ''
     [storage]
     driver = "overlay"
-    graphroot = "/home/v1mkss/.local/share/containers/storage"
-    runroot = "/home/v1mkss/.local/share/containers/storage/run"
+    graphroot = "/home/${username}/.local/share/containers/storage"
+    runroot = "/home/${username}/.local/share/containers/storage/run"
 
     [storage.options.overlay]
     mount_program = "${pkgs.fuse-overlayfs}/bin/fuse-overlayfs"

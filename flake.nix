@@ -15,7 +15,7 @@
       url = "github:v1mkss/XMCL-Nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
+};
 
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
