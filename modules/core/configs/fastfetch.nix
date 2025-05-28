@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       logo = {
-        source = "arch_small";
+        source = "nixos_small";
         height = 18;
         padding = {
           top = 1;
