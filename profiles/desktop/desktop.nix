@@ -86,5 +86,5 @@ in
       RUNTIME_PM_DRIVER_BLACKLIST = ""; # Ensure amdgpu is not blacklisted
     };
   };
-  powerManagement.enable = true;
+  powerManagement.enable = false;
 }
