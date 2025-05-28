@@ -9,9 +9,9 @@ fi
 CONFIG_FILE="$USER_HOME/.config/kdeglobals"
 SECTION="[General]"
 KEY1="TerminalApplication"
-VALUE1="alacritty"
+VALUE1="ghostty"
 KEY2="TerminalService"
-VALUE2="Alacritty.desktop"
+VALUE2="ghostty.desktop"
 
 # Ensure the file exists
 touch "$CONFIG_FILE"

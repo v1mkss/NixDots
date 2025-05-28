@@ -1,8 +1,8 @@
 { ... }:
 {
   imports = [
-    ./alacritty.nix
     ./direnv.nix
+    ./ghostty.nix
     ./git.nix
   ];
 }

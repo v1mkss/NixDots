@@ -8,9 +8,6 @@
     };
 
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [
-      "zswap.enabled=1" # Enable zswap
-    ];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "amdgpu" ];
   };

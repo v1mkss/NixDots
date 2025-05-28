@@ -7,8 +7,6 @@
   # Install container management tools
   home.packages = with pkgs; [
     distrobox
-    podman-compose
-    runc
   ];
 
   # Configure container settings

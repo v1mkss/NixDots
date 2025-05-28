@@ -7,7 +7,7 @@ let
   kdePackages = with pkgs; [
     whitesur-icon-theme # Icon theme
     pkgs.kdePackages.sddm-kcm # KDE SDDM configuration module
-    # pkgs.kdePackages.kdialog # File dialogs for non-KDE apps
+    pkgs.kdePackages.plasma-browser-integration # For Browser Connection
   ];
 
   # --- Packages to exclude globally ---
@@ -17,17 +17,17 @@ let
 
   # --- Packages to exclude from KDE ---
   kdeExcludePackages = with pkgs.kdePackages; [
-    baloo # Disable file indexing if not needed
+    baloo # File indexing
     elisa # KDE music player
     kate # KDE text editor
     khelpcenter # KDE help center
     konsole # KDE terminal emulator
     xwaylandvideobridge # Component for screen recording in XWayland
     discover # Software center
-    drkonqi # Crash handler
     oxygen # Old theme
     breeze-gtk # GTK theme
-    kdeconnect-kde # KDE Connectz
+    kdeconnect-kde # KDE Connect
+    plasma-systemmonitor
   ];
 
 in
