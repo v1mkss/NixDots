@@ -66,6 +66,8 @@
       gp = "git push";
       gpull = "git pull";
       gb = "git branch";
+      cleanup = "nix-collect-garbage -d; sudo nix-collect-garbage -d; echo 'Nix-Garbage work finished'";
+      optimize = "echo Nix-Store Optimization... Please wait; sudo nix-store --optimize";
     };
 
     # Define custom fish functions
