@@ -14,7 +14,6 @@
     homeDirectory = "/home/${username}";
     stateVersion = nixstateVersion;
 
-
     # nix-shell configuration
     file.".config/nixpkgs/config.nix".text = ''{ allowUnfree = true; }'';
   };
@@ -28,7 +27,7 @@
       userEmail = "v1mkss.m+git@gmail.com";
 
       signing = {
-        key = "8FE091CB442751E8";
+        key = "7A6FF9D95C5021F4";
         signByDefault = true;
       };
     };

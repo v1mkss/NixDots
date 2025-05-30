@@ -25,6 +25,16 @@ echo " rebuilding system for host 'default'..."
 if sudo nixos-rebuild switch --flake .#default; then
     echo "✓ Hardware configuration copied and system rebuilt successfully!"
 
+    # Execute all scripts in profiles/desktop/scripts if host is 'default'
+    SCRIPTS_DIR="$SCRIPT_DIR/profiles/desktop/scripts"
+    if [ -d "$SCRIPTS_DIR" ]; then
+        echo "✓ Executing scripts in $SCRIPTS_DIR..."
+        for script in "$SCRIPTS_DIR"/*.sh; do
+            [ -f "$script" ] && [ -x "$script" ] && sh "$script"
+        done
+    else
+        echo "✗ Directory $SCRIPTS_DIR does not exist. Skipping script execution."
+    fi
 else
     echo "✗ Failed to rebuild system. Please check the error messages above."
     exit 1

@@ -8,10 +8,6 @@
     };
 
     kernelPackages = pkgs.linuxPackages_zen;
-    kernelParams = [
-      "zswap.enabled=1"
-      "amd_pstate=passive"
-    ];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "amdgpu" ];
   };

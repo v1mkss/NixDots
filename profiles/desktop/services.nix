@@ -20,4 +20,7 @@
       dates = "weekly";
     };
   };
+
+  # Better Gamnig Support
+  programs.gamemode.enable = true;
 }

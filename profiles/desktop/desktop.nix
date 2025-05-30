@@ -6,11 +6,8 @@ let
   # --- KDE specific packages ---
   kdePackages = with pkgs; [
     whitesur-icon-theme # Icon theme
-
-    # KDE Integration and Utilities
-    pkgs.kdePackages.sddm-kcm # SDDM configuration
-    pkgs.kdePackages.powerdevil # KDE power management
-    # pkgs.kdePackages.kdialog # File dialogs for non-KDE apps
+    pkgs.kdePackages.sddm-kcm # KDE SDDM configuration module
+    pkgs.kdePackages.plasma-browser-integration # For Browser Connection
   ];
 
   # --- Packages to exclude globally ---
@@ -20,12 +17,17 @@ let
 
   # --- Packages to exclude from KDE ---
   kdeExcludePackages = with pkgs.kdePackages; [
-    baloo # Disable file indexing if not needed
+    baloo # File indexing
     elisa # KDE music player
     kate # KDE text editor
     khelpcenter # KDE help center
     konsole # KDE terminal emulator
-    xwaylandvideobridge # Component for screen recording in XWayland, might be unnecessary
+    xwaylandvideobridge # Component for screen recording in XWayland
+    discover # Software center
+    oxygen # Old theme
+    breeze-gtk # GTK theme
+    kdeconnect-kde # KDE Connect
+    plasma-systemmonitor # Plasma System Monitor
   ];
 
 in
@@ -34,11 +36,6 @@ in
   services.xserver = {
     enable = true;
     excludePackages = with pkgs; [ xterm ];
-  };
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
   # --- Configuration for KDE Plasma ---
@@ -54,61 +51,40 @@ in
   environment.plasma6.excludePackages = kdeExcludePackages ++ globalExcludePackages;
 
   # Power management for KDE
-  services.power-profiles-daemon.enable = true;
-
-  # TLP settings (if you decide to use it instead of/in addition to power-profiles-daemon)
-  # Note: power-profiles-daemon and TLP can conflict.
-  # It's usually recommended to use ONLY ONE of them.
-  # If power-profiles-daemon.enable = true, it's better to disable TLP (enable = false).
-  # If you want to use TLP, set power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = false;
   services.tlp = {
-    enable = false;
+    enable = true;
     settings = {
-      # --- General ---
       TLP_ENABLE = 1;
-      TLP_DEFAULT_MODE = "AC";
+      TLP_DEFAULT_MODE = "BAT"; # Prioritize battery savings
 
-      # --- Battery Charge Thresholds (check compatibility with your laptop!) ---
+      # Battery charge thresholds
       START_CHARGE_THRESH_BAT0 = 85;
       STOP_CHARGE_THRESH_BAT0 = 91;
 
-      # --- CPU Performance Scaling ---
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      # CPU scaling governors (optimized for Zen kernel)
+      CPU_SCALING_GOVERNOR_ON_AC = "performance"; # Max performance on AC
+      CPU_SCALING_GOVERNOR_ON_BAT = "schedutil"; # Better for Zen kernel on battery
 
+      # CPU energy performance policy
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power"; # or "balance_power" or "power"
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power"; # Aggressive power saving
 
-      # --- CPU Boosting ---
-      CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0; # Disable boost on battery to save power
-      # SCHED_POWERSAVE_ON_BAT = 1; # More aggressive scheduling for power saving
+      # CPU boost control
+      CPU_BOOST_ON_AC = 1; # Enable boost on AC
+      CPU_BOOST_ON_BAT = 0; # Disable boost on battery
 
-      # --- Graphics (example for Radeon, adapt for Intel/Nvidia) ---
-      RADEON_POWER_PROFILE_ON_AC = "high";
-      RADEON_POWER_PROFILE_ON_BAT = "low";
-      RADEON_DPM_PERF_LEVEL_ON_AC = "high";
-      RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
+      # Platform profile for AMD APU
+      PLATFORM_PROFILE_ON_AC = "performance";
+      PLATFORM_PROFILE_ON_BAT = "low-power";
 
-      # --- WiFi Power Saving ---
-      WIFI_PWR_ON_AC = "off";
-      WIFI_PWR_ON_BAT = "on";
+      # Power management for amdgpu iGPU
+      RUNTIME_PM_ON_AC = "auto";
+      RUNTIME_PM_ON_BAT = "auto";
 
-      # --- Audio Power Saving ---
-      SOUND_POWER_SAVE_ON_AC = 0;
-      SOUND_POWER_SAVE_ON_BAT = 1;
-      SOUND_POWER_SAVE_CONTROLLER = "Y";
-
-      # --- USB Autosuspend ---
-      USB_AUTOSUSPEND = 1;
-      USB_AUTOSUSPEND_ON_AC = 0; # Disable on AC for better compatibility
-      USB_AUTOSUSPEND_ON_BAT = 1; # Enable on battery for power saving
-      # USB_BLACKLIST="1234:5678"; # Add IDs of devices that don't work with autosuspend
-
-      # --- PCIe Runtime Power Management ---
-      # RUNTIME_PM_ON_AC = "auto";
-      # RUNTIME_PM_ON_BAT = "auto";
-      # RUNTIME_PM_BLACKLIST="01:00.0"; # Example PCI ID
+      # Enable power-saving features for iGPU
+      RUNTIME_PM_DRIVER_BLACKLIST = ""; # Ensure amdgpu is not blacklisted
     };
   };
+  powerManagement.enable = true;
 }
