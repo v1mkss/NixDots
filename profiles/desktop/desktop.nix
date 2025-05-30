@@ -27,7 +27,7 @@ let
     oxygen # Old theme
     breeze-gtk # GTK theme
     kdeconnect-kde # KDE Connect
-    plasma-systemmonitor
+    plasma-systemmonitor # Plasma System Monitor
   ];
 
 in

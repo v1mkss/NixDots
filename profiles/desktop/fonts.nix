@@ -6,6 +6,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       roboto
+      unifont
 
       nerd-fonts.symbols-only
     ];
@@ -18,6 +19,7 @@
         emoji = [
           "Noto Color Emoji"
           "Symbols Nerd Font"
+          "Unifont"
         ];
       };
 
@@ -31,4 +33,6 @@
     enableDefaultPackages = true;
     fontDir.enable = true;
   };
+
+  environment.variables.TERM = "xterm-256color";
 }
