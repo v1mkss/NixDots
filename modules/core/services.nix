@@ -8,9 +8,6 @@
     # Enable fwupd for firmware updates
     fwupd.enable = true;
 
-    # Smart card service
-    pcscd.enable = true;
-
     # Journald limit settings
     journald.extraConfig = "SystemMaxUse=50M";
   };

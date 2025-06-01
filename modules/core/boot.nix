@@ -10,12 +10,16 @@
     kernelPackages = pkgs.linuxPackages_zen;
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "amdgpu" ];
+    kernelParams = [
+        "zswap.enabled=1" # enables zswap
+        "zswap.compressor=zstd" # compression algorithm
+      ];
+
   };
 
   # Swap configuration using zram
   zramSwap = {
     enable = true;
-    algorithm = "zstd lz4";
-    memoryPercent = 50;
+    algorithm = "zstd";
   };
 }

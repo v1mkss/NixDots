@@ -37,7 +37,7 @@
           hostname,
           username ? hostname,
           system ? "x86_64-linux",
-          nixstateVersion ? "25.05",
+          nixstateVersion ? "25.11",
           ...
         }:
         lib.nixosSystem {
