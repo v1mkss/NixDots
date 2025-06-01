@@ -33,10 +33,7 @@ let
 in
 {
   # --- Basic X-server/Wayland settings ---
-  services.xserver = {
-    enable = true;
-    excludePackages = with pkgs; [ xterm ];
-  };
+  services.xserver.enable = false;
 
   # --- Configuration for KDE Plasma ---
   services.displayManager.sddm = {

@@ -6,7 +6,7 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 
 ### 🖥️ System
 
-- **Desktop Environment**: KDE Plasma 6
+- **Desktop Environment**: KDE Plasma 6 Wayland(Only)
 - **Hardware Support**: Optimized for AMD CPU/IGPU/GPU
 - **Audio**: PipeWire audio system
 - **Fonts**: Cascadia Code as default font family
@@ -14,7 +14,6 @@ My optimized, minimal NixOS setup featuring Flakes and Home Manager for streamli
 ### 🛠️ Development Environment
 
 - **IDEs & Editors**:
-  - VS Code
   - Zed Editor
 - **Languages & Runtimes**: Direnv
 - **Version Control**: Git with LazyGit
@@ -75,9 +74,9 @@ optimize                # Optimize Nix store (may take time)
 ### Enhanced CLI Commands
 
 ```bash
-ls, l, la            # Enhanced file listing (eza)
-cat <file>           # Enhanced file viewer (bat)
-tree                 # Directory tree view (eza)
+ls, l, la            # Enhanced file listing
+cat <file>           # Enhanced file viewer
+tree                 # Directory tree view
 mkcd <directory>      # Create and enter directory
 ```
 

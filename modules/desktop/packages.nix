@@ -10,9 +10,9 @@
     # Media
     audacious
     easyeffects
-    mpv
     youtube-music
     yt-dlp
+    vlc
 
     # Internet
     inputs.zen-browser.packages."${system}".default
